@@ -1,0 +1,1726 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>Com.AMap.Api.Services</name>
+  </assembly>
+  <members>
+    <member name="T:Com.AMap.Api.Services.AMapBusSearch">
+      <summary>
+            公交异步查询类，支持公交路线id、 公交路线关键字和公交站点关键字查询类
+            </summary>
+    </member>
+    <member name="M:Com.AMap.Api.Services.AMapBusSearch.BusLineIDSearch(System.String)">
+      <summary>
+            根据公交路线id查询公交路线详细信息
+            </summary>
+      <param name="id">公交路线ID</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:Com.AMap.Api.Services.AMapBusSearch.BusLineKeyWords(System.String)">
+      <summary>
+            根据公交路线关键字在全国范围内查询公交路线基本信息 
+            </summary>
+      <param name="keyWords">路线查询关键字，多个关键字用“|”分割，“空格"表示与，“双引号”表示不可分割</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:Com.AMap.Api.Services.AMapBusSearch.BusLineKeyWords(System.String,System.String)">
+      <summary>
+            根据公交路线关键字查询指定城市范围内的公交路线基本信息
+            </summary>
+      <param name="keyWords">路线查询关键字，多个关键字用“|”分割，“空格"表示与，“双引号”表示不可分割</param>
+      <param name="city">指定搜索城市,取值为：cityname（中文或中文全拼）、citycode、adcode (《参见城市编码表》)</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:Com.AMap.Api.Services.AMapBusSearch.BusLineKeyWords(System.String,System.UInt32,System.UInt32,System.String,Com.AMap.Api.Services.Extensions)">
+      <summary>
+            根据公交路线关键字查询指定城市范围内的公交路线基本信息 
+            </summary>
+      <param name="keyWords">路线查询关键字，多个关键字用“|”分割，“空格"表示与，“双引号”表示不可分割</param>
+      <param name="offset">每页记录数(默认值为20)，取值为：1-100</param>
+      <param name="page">当前页数。最大翻页数10，默认1。</param>
+      <param name="city">指定搜索城市，取值为：cityname（中文或中文全拼）、citycode、adcode (《参见城市编码表》)</param>
+      <param name="extensions">返回结果控制，All返回基本信息以外的扩展信息，Base只返回基本信息，默认为Base</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:Com.AMap.Api.Services.AMapBusSearch.BusStopKeyWords(System.String)">
+      <summary>
+            根据公交站关键字在全国范围内查询公交站点详细信息 
+            </summary>
+      <param name="keyWords">查询关键字，多个关键字用“|”分割，“空格"表示与，“双引号”表示不可分割</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:Com.AMap.Api.Services.AMapBusSearch.BusStopKeyWords(System.String,System.String)">
+      <summary>
+            根据公交站关键字查询指定城市范围内的公交站点详细信息 
+            </summary>
+      <param name="keyWords">查询关键字，多个关键字用“|”分割，“空格"表示与，“双引号”表示不可分割</param>
+      <param name="city">指定搜索城市，取值为：cityname（中文或中文全拼）、citycode、adcode (《参见城市编码表》)</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:Com.AMap.Api.Services.AMapBusSearch.BusStopKeyWords(System.String,System.UInt32,System.UInt32,System.String)">
+      <summary>
+            根据公交站关键字查询指定城市范围内的公交站点详细信息
+            </summary>
+      <param name="keyWords">查询关键字，多个关键字用“|”分割，“空格"表示与，“双引号”表示不可分割</param>
+      <param name="offset">每页记录数(默认值为20)，取值为：1-100</param>
+      <param name="page">当前页数(默认值为1)，取值为：1-10</param>
+      <param name="city">定搜索城市，取值为：cityname（中文或中文全拼）、citycode、adcode (《参见城市编码表》)</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="T:Com.AMap.Api.Services.AMapNavigationSearch">
+      <summary>
+            路径规划异步查询类，包括驾车、公交和步行路径规划类
+            </summary>
+    </member>
+    <member name="M:Com.AMap.Api.Services.AMapNavigationSearch.DrivingNavigation(System.Double,System.Double,System.Double,System.Double)">
+      <summary>
+            驾车路线规划 根据起点和终点查询最优的一条驾车路线
+            </summary>
+      <param name="originX">出发地经度</param>
+      <param name="originY">出发地纬度</param>
+      <param name="destinationX">目的地经度</param>
+      <param name="destinationY">目的地纬度</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:Com.AMap.Api.Services.AMapNavigationSearch.DrivingNavigation(System.Double,System.Double,System.Double,System.Double,Com.AMap.Api.Services.Extensions,System.String,System.String,System.Collections.Generic.List{Com.AMap.Api.Services.Results.AMapLocation},System.Collections.Generic.List{Com.AMap.Api.Services.Results.AMapPolygon},System.String)">
+      <summary>
+            驾车路线规划 根据起点和终点查询最优的一条驾车路线，可以设置途经点、避让区域、避让道路，起点参考POIID， 终点参考POIID 
+            </summary>
+      <param name="originX">出发地经度</param>
+      <param name="originY">出发地纬度</param>
+      <param name="destinationX">目的地经度</param>
+      <param name="destinationY">目的地纬度</param>
+      <param name="extensions">返回结果控制，All返回基本信息以外的扩展信息，Base只返回基本信息，默认为Base</param>
+      <param name="originid">出发点 POI ID，当起点为POI中获取坐标时建议填充此值</param>
+      <param name="destinationid">目的地 POI ID，当起点为POI中获取坐标时建议填充此值</param>
+      <param name="waypoints">途经点数组，数组中存放AMapGeoPoint对象</param>
+      <param name="avoidpolygons">避让区域数组，数组中存放AMapGeoPolygon对象，支持32个避让区域，每个区域最多可有16个顶点</param>
+      <param name="avoidroad">避让道路名，只支持一条避让道路</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:Com.AMap.Api.Services.AMapNavigationSearch.DrivingNavigation(System.Double,System.Double,System.Double,System.Double,System.UInt32,System.String,System.String,System.Collections.Generic.List{Com.AMap.Api.Services.Results.AMapLocation},System.Collections.Generic.List{Com.AMap.Api.Services.Results.AMapPolygon},System.String,Com.AMap.Api.Services.Extensions)">
+      <summary>
+             驾车路线规划 根据起点和终点查询最优的一条驾车路线，可以设置途经点、避让区域、避让道路，起点参考POIID， 终点参考POIID、驾车导航策略 
+            </summary>
+      <param name="originX">出发地经度</param>
+      <param name="originY">出发地纬度</param>
+      <param name="destinationX">目的地经度</param>
+      <param name="destinationY">目的地纬度</param>
+      <param name="strategy">驾车导航策略：0-速度优先（时间）；1-费用优先（不走收费路段的最快道路）；2-距离优先；3-不走快速路；4-结合实时交通（躲避拥堵）；5-多策略（同时使用速度优先、费用优先、距离优先三个策略）；6-不走高速；7-不走高速且避免收费；8-躲避收费和拥堵；9-不走高速且躲避收费和拥堵</param>
+      <param name="originid">出发点 POI ID，当起点为POI中获取坐标时建议填充此值</param>
+      <param name="destinationid">目的地 POI ID，当起点为POI中获取坐标时建议填充此值</param>
+      <param name="waypoints">途经点数组，数组中存放AMapGeoPoint对象</param>
+      <param name="avoidpolygons">避让区域数组，数组中存放AMapGeoPolygon对象，支持32个避让区域，每个区域最多可有16个顶点</param>
+      <param name="avoidroad">避让道路名，只支持一条避让道路</param>
+      <param name="extensions">返回结果控制，All返回基本信息以外的扩展信息，Base只返回基本信息，默认为Base</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:Com.AMap.Api.Services.AMapNavigationSearch.BusNavigation(System.Double,System.Double,System.Double,System.Double,System.String)">
+      <summary>
+            公交换乘（结合步行导航）根据起点和终点计算某个城市的公交规划路线 
+            </summary>
+      <param name="originX">出发地经度</param>
+      <param name="originY">出发地纬度</param>
+      <param name="destinationX">目的地经度</param>
+      <param name="destinationY">目的地纬度</param>
+      <param name="city">城市，可选值：cityname（中文或中文全拼）、citycode、adcode</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:Com.AMap.Api.Services.AMapNavigationSearch.BusNavigation(System.Double,System.Double,System.Double,System.Double,System.UInt32,System.Boolean,System.String)">
+      <summary>
+            公交换乘（结合步行导航）根据起点和终点计算某个城市的公交规划路线，可以设置换乘策略和是否考虑夜班车
+            </summary>
+      <param name="originX">出发地经度</param>
+      <param name="originY">出发地纬度</param>
+      <param name="destinationX">目的地经度</param>
+      <param name="destinationY">目的地纬度</param>
+      <param name="strategy">公交换乘策略：0-最快捷模式；1-最经济模式；2-最少换乘模式；3-最少步行模式；4-最舒适模式；5-不乘地铁模式</param>
+      <param name="nightflag">是否计算夜班车，true为包含夜间线路，false为不包含夜间线路</param>
+      <param name="city">城市，可选值：cityname（中文或中文全拼）、citycode、adcode</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:Com.AMap.Api.Services.AMapNavigationSearch.WalkingNavigation(System.Double,System.Double,System.Double,System.Double)">
+      <summary>
+            步行路径规划 根据起点和终点计算最优步行路线 
+            </summary>
+      <param name="originX">出发地经度</param>
+      <param name="originY">出发地纬度</param>
+      <param name="destinationX">目标地纬度</param>
+      <param name="destinationY">目标地纬度</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:Com.AMap.Api.Services.AMapNavigationSearch.WalkingNavigation(System.Double,System.Double,System.Double,System.Double,System.UInt32)">
+      <summary>
+            步行路径规划 根据起点和终点计算最优步行路线 
+            </summary>
+      <param name="originX">出发地经度</param>
+      <param name="originY">出发地纬度</param>
+      <param name="destinationX">目标地纬度</param>
+      <param name="destinationY">目标地纬度</param>
+      <param name="multipath"> 是否提供备选步行方案：0-只提供一条步行方案；1-提供备选步行方案（有可能无备选方案）</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="T:Com.AMap.Api.Services.AMapPOISearch">
+      <summary>
+            兴趣点异步查询类，包括关键字、周边、区域和团购优惠搜索 
+            </summary>
+    </member>
+    <member name="M:Com.AMap.Api.Services.AMapPOISearch.POIAround(System.Double,System.Double,System.String,System.String,System.UInt32)">
+      <summary>
+             周边查询 根据中心点和半径搜索指定关键字、指定分类的兴趣点 
+             </summary>
+      <param name="centerX">中心点坐标,经度</param>
+      <param name="centerY">中心点坐标，纬度</param>
+      <param name="keywords">查询关键字，多个关键字用“|”分割，“空格"表示与，“双引号”表示不可分割，keywords与types二选其一为必填</param>
+      <param name="types"> POI分类，可以填写分类编码和分类名称(《参见POI分类编码表》)</param>
+      <param name="radius">查询半径(默认值为 3000 单位:米)，取值为0-50000</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:Com.AMap.Api.Services.AMapPOISearch.POIAround(System.Double,System.Double,System.String,System.String,System.Boolean,System.Boolean,System.UInt32,System.UInt32,System.UInt32,System.UInt32,Com.AMap.Api.Services.Extensions,System.String)">
+      <summary>
+            周边查询(不推荐使用)
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:Com.AMap.Api.Services.AMapPOISearch.POIAround(System.Double,System.Double,System.String,System.String,Com.AMap.Api.Services.AMapFilterOption,System.UInt32,System.UInt32,System.UInt32,System.UInt32,Com.AMap.Api.Services.Extensions,System.String)">
+      <summary>
+            周边查询 根据给定的参数，返回兴趣点基础信息以及深度信息。 
+            </summary>
+      <param name="centerX">中心点坐标,经度</param>
+      <param name="centerY">中心点坐标，纬度</param>
+      <param name="keywords">查询关键字，多个关键字用“|”分割，“空格"表示与，“双引号”表示不可分割，keywords与types二选其一为必填</param>
+      <param name="types">POI分类，可以填写分类编码和分类名称(《参见POI分类编码表》)</param>
+      <param name="filterOption">参数筛选</param>
+      <param name="radius">查询半径</param>
+      <param name="sortrule">排序规则</param>
+      <param name="offset">每页记录数</param>
+      <param name="page">当前页数</param>
+      <param name="extensions">返回结果控制</param>
+      <param name="city">城市，可选值：cityname（中文或中文全拼）、citycode、adcode</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:Com.AMap.Api.Services.AMapPOISearch.POIID(System.String)">
+      <summary>
+            根据兴趣点id搜索团购优惠信息 
+            </summary>
+      <param name="id">兴趣点id</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:Com.AMap.Api.Services.AMapPOISearch.POIKeyWords(System.String,System.String,System.String)">
+      <summary>
+            根据关键字或者分类查询兴趣点 
+            </summary>
+      <param name="keywords"> 查询关键字，多个关键字用“|”分割，“空格"表示与，“双引号”表示不可分割，keywords与types二选其一为必填</param>
+      <param name="types">POI分类，可以填写分类编码和分类名称(《参见POI分类编码表》)</param>
+      <param name="city">城市，可选值：cityname（中文或中文全拼）、citycode、adcode</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:Com.AMap.Api.Services.AMapPOISearch.POIKeyWords(System.String,System.String,System.Boolean,System.Boolean,System.UInt32,System.UInt32,System.UInt32,Com.AMap.Api.Services.Extensions,System.String)">
+      <summary>
+            兴趣点关键字查询,不推荐使用
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:Com.AMap.Api.Services.AMapPOISearch.POIKeyWords(System.String,System.String,Com.AMap.Api.Services.AMapFilterOption,System.UInt32,System.UInt32,System.UInt32,Com.AMap.Api.Services.Extensions,System.String)">
+      <summary>
+            根据兴趣点的关键字进行查询
+            </summary>
+      <param name="keywords">查询关键字，多个关键字用“|”分割，“空格"表示与，“双引号”表示不可分割，keywords与types二选其一为必填</param>
+      <param name="types">POI分类，可以填写分类编码和分类名称(《参见POI分类编码表》)</param>
+      <param name="filterOption">参数筛选</param>
+      <param name="sortrule">排序规则(默认为0)，取值为：0-混合排序；1-距离排序</param>
+      <param name="offset">每页记录数(默认值为20)，取值为：1-100</param>
+      <param name="page">当前页数(默认值为1)，取值为：1-10</param>
+      <param name="extensions">返回结果控制，All返回基本信息以外的扩展信息，Base只返回基本信息，默认为Base</param>
+      <param name="city">城市，可选值：cityname（中文或中文全拼）、citycode、adcode</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:Com.AMap.Api.Services.AMapPOISearch.POIPolygon(System.String,System.String,Com.AMap.Api.Services.Results.AMapPolygon)">
+      <summary>
+            多边形查询 在某个区域内搜索指定关键、指定分类的兴趣点 
+            </summary>
+      <param name="keyWords">查询关键字，多个关键字用“|”分割，“空格"表示与，“双引号”表示不可分割，keywords与types二选其一为必填</param>
+      <param name="types">POI分类，可以填写分类编码和分类名称(《参见POI分类编码表》)</param>
+      <param name="polygon">特定区域</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:Com.AMap.Api.Services.AMapPOISearch.POIPolygon(System.String,System.String,Com.AMap.Api.Services.Results.AMapPolygon,System.UInt32,System.UInt32,System.UInt32)">
+      <summary>
+            多边形查询 在某个区域内搜索指定关键、指定分类的兴趣点，可以设置排序规则、每页记录数以及当前页数 
+            </summary>
+      <param name="keyWords">查询关键字，多个关键字用“|”分割，“空格"表示与，“双引号”表示不可分割，keywords与types二选其一为必填</param>
+      <param name="types">POI分类，可以填写分类编码和分类名称(《参见POI分类编码表》)</param>
+      <param name="polygon">特定区域</param>
+      <param name="sortrule">排序规则(默认为0)，取值为：0-混合排序；1-距离排序</param>
+      <param name="offset">每页记录数(默认值为20)，取值为：1-100</param>
+      <param name="page">当前页数(默认值为1)，取值为：1-10数</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:Com.AMap.Api.Services.AMapPOISearch.POIPolygon(System.String,System.String,Com.AMap.Api.Services.Results.AMapPolygon,System.Boolean,System.Boolean,System.UInt32,System.UInt32,System.UInt32,Com.AMap.Api.Services.Extensions,System.String)">
+      <summary>
+            多边形查询，不推荐使用
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <!-- 对于成员“M:Com.AMap.Api.Services.AMapPOISearch.POIPolygon(System.String,System.String,Com.AMap.Api.Services.Results.AMapPolygon,Com.AMap.Api.Services.AMapFilterOption,System.UInt32,System.UInt32,System.UInt32,Com.AMap.Api.Services.Extensions,System.String)”忽略有格式错误的 XML 注释 -->
+    <member name="T:Com.AMap.Api.Services.AMapInputTips">
+      <summary>
+            输入提示类
+            </summary>
+    </member>
+    <member name="M:Com.AMap.Api.Services.AMapInputTips.InputTips(System.String)">
+      <summary>
+            根据关键字查询输入提示信息 
+            </summary>
+      <param name="keyWords">查询关键字，多个关键字用“|”分割，“空格"表示与，“双引号”表示不可分割</param>
+      <returns> 提示列表</returns>
+    </member>
+    <member name="M:Com.AMap.Api.Services.AMapInputTips.InputTips(System.String,System.String,System.String)">
+      <summary>
+            根据关键字查询输入提示信息，可以指定城市和兴趣点类型
+            </summary>
+      <param name="keyWords">查询关键字，多个关键字用“|”分割，“空格"表示与，“双引号”表示不可分割</param>
+      <param name="city">城市，可选值：cityname（中文或中文全拼）、citycode、adcode</param>
+      <param name="type">POI分类，多个分类用“|”分割，可以填写分类编码和分类名称(《参见POI分类编码表》)</param>
+      <returns>提示列表</returns>
+    </member>
+    <member name="T:Com.AMap.Api.Services.AMapReGeoCodeSearch">
+      <summary>
+             逆地理编码异步查询类 
+            </summary>
+    </member>
+    <member name="M:Com.AMap.Api.Services.AMapReGeoCodeSearch.GeoCodeToAddress(System.Double,System.Double)">
+      <summary>
+            根据坐标查询地址 
+            </summary>
+      <param name="poiX">经度</param>
+      <param name="poiY">纬度</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:Com.AMap.Api.Services.AMapReGeoCodeSearch.GeoCodeToAddress(System.Double,System.Double,System.UInt32,System.String,Com.AMap.Api.Services.Extensions)">
+      <summary>
+            根据坐标查询地址，可以设置半径、屏蔽POI设置以及是否返回详细信息 
+             </summary>
+      <param name="poiX">经度</param>
+      <param name="poiY">纬度</param>
+      <param name="radius">查询半径(默认值为 1000 单位:米)，取值为 0-3000</param>
+      <param name="poiid_filter">返回结果屏蔽此ID的POI </param>
+      <param name="extensions">是否返回扩展信息(默认为Base)，Base-返回地址信息；All-返回地址信息以及附近POI，道路以及道路交叉口信息</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="T:Com.AMap.Api.Services.AMapSearchConfig">
+      <summary>
+            搜索服务配置类
+            </summary>
+    </member>
+    <member name="F:Com.AMap.Api.Services.AMapSearchConfig.Key">
+      <summary>
+            用户key设置 
+            </summary>
+    </member>
+    <member name="T:Com.AMap.Api.Services.Extensions">
+      <summary>
+            返回结果控制
+            </summary>
+    </member>
+    <member name="F:Com.AMap.Api.Services.Extensions.All">
+      <summary>
+            返回地址信息以及附近POI,道路以及道路交叉口信息
+            </summary>
+    </member>
+    <member name="F:Com.AMap.Api.Services.Extensions.Base">
+      <summary>
+            返回基本地址信息
+            </summary>
+    </member>
+    <member name="T:Com.AMap.Api.Services.AMapGeoCodeSearch">
+      <summary>
+            地理编码异步查询类 
+            </summary>
+    </member>
+    <member name="M:Com.AMap.Api.Services.AMapGeoCodeSearch.AddressToGeoCode(System.String)">
+      <summary>
+            根据地址查询坐标 
+            </summary>
+      <param name="address">地址信息</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:Com.AMap.Api.Services.AMapGeoCodeSearch.AddressToGeoCode(System.String,System.String)">
+      <summary>
+            根据地址查询坐标，可以限定在某个城市范围内查询 
+            </summary>
+      <param name="address">地址</param>
+      <param name="city">指定搜索城市，取值为：cityname（中文或中文全拼）、citycode、adcode (《参见城市编码表》)</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="T:Com.AMap.Api.Services.AMapFilterOption">
+      <summary>
+            查询--筛选条件类
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.AMapFilterOption.Groupbuy">
+      <summary>
+            团购标识，true有团购
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.AMapFilterOption.Discount">
+      <summary>
+            优惠标识，true有优惠
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.AMapFilterOption.Meal_Ordering">
+      <summary>
+            订餐标识，true可订餐
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.AMapFilterOption.Cost_Min">
+      <summary>
+            消费均价筛选
+            下限必填，上限可不填，不填写代表无上限
+            默认该价格为不限
+            Min下限
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.AMapFilterOption.Cost_Max">
+      <summary>
+            消费均价筛选
+            下限必填，上限可不填，不填写代表无上限
+            默认该价格为不限
+             Max上限
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.AMapFilterOption.Star">
+      <summary>
+            酒店星级筛选，级别：0,1,2,3,4,5
+            </summary>
+    </member>
+    <member name="T:Com.AMap.Api.Services.Results.AMapAddressComponent">
+      <summary>
+            地址组成要素类
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapAddressComponent.Province">
+      <summary>
+            省
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapAddressComponent.City">
+      <summary>
+            市
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapAddressComponent.District">
+      <summary>
+            区
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapAddressComponent.Township">
+      <summary>
+            乡镇
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapAddressComponent.Neighborhood">
+      <summary>
+            社区
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapAddressComponent.Building">
+      <summary>
+            建筑
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapAddressComponent.Stree_number">
+      <summary>
+            门牌信息
+            </summary>
+    </member>
+    <member name="T:Com.AMap.Api.Services.Results.AMapAppUrl">
+      <summary>
+            手机应用网址
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapAppUrl.Android">
+      <summary>
+            android版本的手机应用网址
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapAppUrl.Ios">
+      <summary>
+            ios版本的手机应用网址
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapAppUrl.Wp">
+      <summary>
+            winphone版本的手机应用网址
+            </summary>
+    </member>
+    <member name="T:Com.AMap.Api.Services.Results.AMapBizExt">
+      <summary>
+            行业扩展信息包装
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapBizExt.Cost">
+      <summary>
+            行业扩展信息，人均消费
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapBizExt.BizExtDining_Meal_ordering">
+      <summary>
+            餐饮行业扩展信息，是否可订餐
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapBizExt.BizExtHotel_Star">
+      <summary>
+            酒店行业扩展信息，星级
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapBizExt.BizExtHotel_Price_lowest">
+      <summary>
+            酒店行业扩展信息，最低价格
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapBizExt.BizExtTheater_Seat_ordering">
+      <summary>
+            影院行业扩展信息，是否可选座
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapBizExt.BizExtTravel_Ticket_ordering">
+      <summary>
+            景点行业扩展信息，是否可订票
+            </summary>
+    </member>
+    <member name="T:Com.AMap.Api.Services.Results.AMapBusLine">
+      <summary>
+            公交线路
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapBusLine.Id">
+      <summary>
+            公交线路ID
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapBusLine.Name">
+      <summary>
+            线路名称
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapBusLine.Type">
+      <summary>
+            公交类型
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapBusLine.Citycode">
+      <summary>
+            城市编码
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapBusLine.Start_stop">
+      <summary>
+            首发站
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapBusLine.End_stop">
+      <summary>
+            终点站
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapBusLine.Location">
+      <summary>
+            公交站经纬度
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapBusLine.Start_time">
+      <summary>
+            首班车时间
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapBusLine.End_time">
+      <summary>
+            末班车时间
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapBusLine.Company">
+      <summary>
+            所属公交公司
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapBusLine.Distance">
+      <summary>
+            全程里程（单位：千米）
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapBusLine.Duration">
+      <summary>
+            预计行驶时间（单位：秒）
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapBusLine.Basic_price">
+      <summary>
+            起步价
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapBusLine.Total_price">
+      <summary>
+            全程票价
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapBusLine.Bounds">
+      <summary>
+            矩形区域左下、右上顶点坐标
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapBusLine.Bus_stops_num">
+      <summary>
+            途径公交站数
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapBusLine.Bus_stops">
+      <summary>
+            途经公交站
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapBusLine.Departure_stop">
+      <summary>
+            起程站
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapBusLine.Arrival_stop">
+      <summary>
+            下车站
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapBusLine.Polyline">
+      <summary>
+            路段坐标点串
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapBusLineResults.Suggestion">
+      <summary>
+            关键字建议列表和城市建议列表
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapBusLineResults.BusLineList">
+      <summary>
+             公交路线接口
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapBusLineResults.Count">
+      <summary>
+            返回信息总数
+            </summary>
+    </member>
+    <member name="T:Com.AMap.Api.Services.Results.AMapBusStop">
+      <summary>
+            公交站类
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapBusStop.Id">
+      <summary>
+            公交站ID
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapBusStop.Name">
+      <summary>
+            站名
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapBusStop.Sequence">
+      <summary>
+            公交站序号
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapBusStop.Citycode">
+      <summary>
+            城市编码
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapBusStop.Location">
+      <summary>
+            经纬度
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapBusStop.Buslines">
+      <summary>
+             途径此站的公交路线
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapBusStopResults.Suggestion">
+      <summary>
+            关键字建议列表和城市建议列表
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapBusStopResults.BusStopList">
+      <summary>
+            公交站列表
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapBusStopResults.Count">
+      <summary>
+            返回信息总数
+            </summary>
+    </member>
+    <member name="T:Com.AMap.Api.Services.Results.AMapDeepContent">
+      <summary>
+            深度信息
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapDeepContent.Type">
+      <summary>
+            行业
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapDeepContent.Intro">
+      <summary>
+            简介
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapDeepContent.Rating">
+      <summary>
+            综合评分
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapDeepContent.Deepsrc">
+      <summary>
+            信息来源
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapDeepContent.Photos">
+      <summary>
+            图片信息
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapDeepContent.Din_deep">
+      <summary>
+            餐饮行业的深度信息
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapDeepContent.Hotel_deep">
+      <summary>
+            酒店行业的深度信息
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapDeepContent.Travel_deep">
+      <summary>
+            景点行业的深度信息
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapDeepContent.Film_deep">
+      <summary>
+            电影行业的深度信息
+            </summary>
+    </member>
+    <member name="T:Com.AMap.Api.Services.Results.AMapDinDeepContent">
+      <summary>
+             餐饮行业的深度信息
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapDinDeepContent.Cuisines">
+      <summary>
+            菜系
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapDinDeepContent.Tag">
+      <summary>
+            标签
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapDinDeepContent.Cp_rating">
+      <summary>
+            单数据源的评分
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapDinDeepContent.Taste_rating">
+      <summary>
+             口味评分
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapDinDeepContent.Environment_rating">
+      <summary>
+            环境评分
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapDinDeepContent.Service_rating">
+      <summary>
+            服务评分
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapDinDeepContent.Cost">
+      <summary>
+            人均消费
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapDinDeepContent.Recommend">
+      <summary>
+            特色菜
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapDinDeepContent.Atmosphere">
+      <summary>
+            氛围
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapDinDeepContent.Ordering_wap_url">
+      <summary>
+            手机端订餐网址
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapDinDeepContent.Ordering_web_url">
+      <summary>
+            网页版订餐网址
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapDinDeepContent.Orderin_app_url">
+      <summary>
+             手机应用订餐网址
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapDinDeepContent.Opentime_GDF">
+      <summary>
+            规范格式的营业时间
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapDinDeepContent.Opentime">
+      <summary>
+            非规范格式的营业时间
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapDinDeepContent.Addition">
+      <summary>
+            餐厅特色
+            </summary>
+    </member>
+    <member name="T:Com.AMap.Api.Services.Results.AMapDiscount">
+      <summary>
+            打折信息类
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapDiscount.Title">
+      <summary>
+            标题
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapDiscount.Detail">
+      <summary>
+            优惠详情
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapDiscount.Start_time">
+      <summary>
+            开始时间
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapDiscount.End_time">
+      <summary>
+            结束时间
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapDiscount.Sold_num">
+      <summary>
+            已卖出数量
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapDiscount.Photos">
+      <summary>
+            图片信息
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapDiscount.Url">
+      <summary>
+            来源URL
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapDiscount.Provider">
+      <summary>
+            来源标识
+            </summary>
+    </member>
+    <member name="T:Com.AMap.Api.Services.Results.AMapFilmDeepContent">
+      <summary>
+             电影行业的深度信息
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapGeoCode.Adcode">
+      <summary>
+      </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapGeoCode.Building">
+      <summary>
+            楼
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapGeoCode.City">
+      <summary>
+            城市名
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapGeoCode.District">
+      <summary>
+            区域名称
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapGeoCode.FormattedAddress">
+      <summary>
+            格式化地址
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapGeoCode.LevelList">
+      <summary>
+      </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapGeoCode.Neighborhood">
+      <summary>
+      </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapGeoCode.Province">
+      <summary>
+      </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapGeoCode.Township">
+      <summary>
+      </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapGeoCodeResult.Count">
+      <summary>
+            返回信息总数
+            </summary>
+    </member>
+    <member name="T:Com.AMap.Api.Services.Results.AMapGroupBuy">
+      <summary>
+            团购信息类
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapGroupBuy.Type_code">
+      <summary>
+            团购分类代码
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapGroupBuy.Type">
+      <summary>
+            团购分类
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapGroupBuy.Detail">
+      <summary>
+            团购详情
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapGroupBuy.Start_time">
+      <summary>
+            团购开始时间
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapGroupBuy.End_time">
+      <summary>
+            团购结束时间
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapGroupBuy.Num">
+      <summary>
+            团购总量
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapGroupBuy.Sold_num">
+      <summary>
+            已卖出数量
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapGroupBuy.Original_price">
+      <summary>
+            原价
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapGroupBuy.Groupbuy_price">
+      <summary>
+            团购价
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapGroupBuy.Discount">
+      <summary>
+            折扣
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapGroupBuy.Ticket_address">
+      <summary>
+            取票地址
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapGroupBuy.Ticket_tel">
+      <summary>
+            取票电话
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapGroupBuy.Photos">
+      <summary>
+            图片信息
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapGroupBuy.Url">
+      <summary>
+            来源URL
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapGroupBuy.Provider">
+      <summary>
+            来源标识
+            </summary>
+    </member>
+    <member name="T:Com.AMap.Api.Services.Results.AMapHotelDeepContent">
+      <summary>
+             酒店行业的深度信息
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapHotelDeepContent.Star">
+      <summary>
+            星级
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapHotelDeepContent.Lowest_price">
+      <summary>
+             最低价
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapHotelDeepContent.Faci_rating">
+      <summary>
+             设施评分
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapHotelDeepContent.Health_rating">
+      <summary>
+            卫生评分
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapHotelDeepContent.Environment_rating">
+      <summary>
+            环境评分
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapHotelDeepContent.Service_rating">
+      <summary>
+            服务评分
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapHotelDeepContent.Traffic">
+      <summary>
+            交通提示
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapHotelDeepContent.Addition">
+      <summary>
+            特色服务
+            </summary>
+    </member>
+    <member name="T:Com.AMap.Api.Services.Results.AMapPath">
+      <summary>
+            步行、驾车方案
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapPath.Distance">
+      <summary>
+            起点和终点的距离
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapPath.Duration">
+      <summary>
+            预计耗时（单位：秒）
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapPath.Strategy">
+      <summary>
+            导航策略
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapPath.Steps">
+      <summary>
+            导航路段
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapPath.Tolls">
+      <summary>
+            此方案费用（单位：元）
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapPath.Toll_distance">
+      <summary>
+            此方案收费路段长度（单位：米）
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapPOIResults.Suggestion">
+      <summary>
+            查询建议
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapPOIResults.Count">
+      <summary>
+            返回信息总数
+            </summary>
+    </member>
+    <member name="T:Com.AMap.Api.Services.Results.AMapPoitype">
+      <summary>
+            POI分类信息
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapPoitype.Name">
+      <summary>
+            类别名称
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapPoitype.Code">
+      <summary>
+            分类编码
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapPoitypeResults.Count">
+      <summary>
+            返回POI分类数目
+            </summary>
+    </member>
+    <member name="T:Com.AMap.Api.Services.Results.AMapPolygon">
+      <summary>
+            多边形定义类
+            </summary>
+    </member>
+    <member name="F:Com.AMap.Api.Services.Results.AMapPolygon.Types.Type.POLYGON">
+      <summary>
+            多边形
+            </summary>
+    </member>
+    <member name="F:Com.AMap.Api.Services.Results.AMapPolygon.Types.Type.CIRCLE">
+      <summary>
+            圆
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapRoute.Origin">
+      <summary>
+            起点坐标
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapRoute.Destination">
+      <summary>
+             终点坐标
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapRoute.Taxi_cost">
+      <summary>
+            出租车费用（单位：元）
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapRoute.Paths">
+      <summary>
+            步行、驾车方案列表
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapRoute.Transits">
+      <summary>
+            公交换乘方案列表
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapRouteResults.Count">
+      <summary>
+            返回信息总数
+            </summary>
+    </member>
+    <member name="T:Com.AMap.Api.Services.Results.AMapSegment">
+      <summary>
+            公交换乘路段
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapSegment.Walking">
+      <summary>
+            此路段步行导航信息
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapSegment.BusLine">
+      <summary>
+            此路段公交导航信息
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapSegment.Entr_name">
+      <summary>
+            入口名称
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapSegment.Entr_location">
+      <summary>
+            入口经纬度
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapSegment.Exit_name">
+      <summary>
+            出口名称
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapSegment.Exit_location">
+      <summary>
+            出口经纬度
+            </summary>
+    </member>
+    <member name="T:Com.AMap.Api.Services.Results.AMapStep">
+      <summary>
+            导航路段
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapStep.Instruction">
+      <summary>
+            行走指示
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapStep.Orientation">
+      <summary>
+            方向
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapStep.Road">
+      <summary>
+            道路名称
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapStep.Distance">
+      <summary>
+            此路段长度（单位：米）
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapStep.Duration">
+      <summary>
+            此路段预计耗时（单位：秒）
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapStep.Action">
+      <summary>
+            导航主要动作
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapStep.Assistant_action">
+      <summary>
+            导航辅助动作
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapStep.Tolls">
+      <summary>
+            此段收费（单位：元）
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapStep.Toll_distance">
+      <summary>
+            收费路段长度（单位：米）
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapStep.Toll_road">
+      <summary>
+            主要收费路段
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapStep.Tmcs">
+      <summary>
+             路况信息
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapStep.Polyline">
+      <summary>
+            路段坐标点串
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapStep.Cities">
+      <summary>
+            途径城市
+            </summary>
+    </member>
+    <member name="T:Com.AMap.Api.Services.Results.AMapStep.City">
+      <summary>
+             途径城市
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapStep.City.Name">
+      <summary>
+            城市中文名
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapStep.City.Citycode">
+      <summary>
+            城市代码
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapStep.City.Districts">
+      <summary>
+            途径地区
+            </summary>
+    </member>
+    <member name="T:Com.AMap.Api.Services.Results.AMapStep.City.District">
+      <summary>
+            途径地区
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapStep.City.District.Name">
+      <summary>
+            中文地区名称
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapStep.City.District.Adcode">
+      <summary>
+            地区navilink得到的adcode
+            </summary>
+    </member>
+    <member name="T:Com.AMap.Api.Services.Results.AMapTip">
+      <summary>
+            输入提示类
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapTip.Name">
+      <summary>
+            Tip名称
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapTip.Adcode">
+      <summary>
+            区域编码
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapTip.District">
+      <summary>
+            所属区域
+            </summary>
+    </member>
+    <member name="T:Com.AMap.Api.Services.Results.AMapLocation">
+      <summary>
+            经纬度
+            </summary>
+    </member>
+    <member name="T:Com.AMap.Api.Services.Results.AMapPhoto">
+      <summary>
+            图片信息类
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapPhoto.Title">
+      <summary>
+            标题
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapPhoto.Url">
+      <summary>
+            URL地址
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapPhoto.Provider">
+      <summary>
+            来源
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapPOI.Id">
+      <summary>
+            POI全局唯一ID
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapPOI.Name">
+      <summary>
+            名称
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapPOI.Type">
+      <summary>
+            兴趣点类型
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapPOI.Location">
+      <summary>
+            经纬度
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapPOI.Address">
+      <summary>
+            地址
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapPOI.Tel">
+      <summary>
+            电话
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapPOI.Distance">
+      <summary>
+            距中心点距离
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapPOI.Postcode">
+      <summary>
+            邮编
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapPOI.Website">
+      <summary>
+            网址
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapPOI.Email">
+      <summary>
+            电子邮件
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapPOI.Citycode">
+      <summary>
+            城市编码
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapPOI.Adcode">
+      <summary>
+            区域编码
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapPOI.Entr_location">
+      <summary>
+            入口经纬度
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapPOI.Exit_location">
+      <summary>
+            出口经纬度
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapPOI.Groupbuy_num">
+      <summary>
+            团购信息数目
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapPOI.Discount_num">
+      <summary>
+            优惠信息数目
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapPOI.Rich_content">
+      <summary>
+            动态市场信息
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapPOI.Direction">
+      <summary>
+            方向
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapPOI.Biz_ext">
+      <summary>
+            针对行业的扩展信息
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapPOI.Deep">
+      <summary>
+             深度信息
+            </summary>
+    </member>
+    <member name="T:Com.AMap.Api.Services.Results.AMapReGeoCode">
+      <summary>
+            逆地理编码类
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapReGeoCode.Formatted_address">
+      <summary>
+            格式化地址
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapReGeoCode.Address_component">
+      <summary>
+            地址组成要素
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapReGeoCode.Roadslist">
+      <summary>
+            道路信息
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapReGeoCode.Roadinters">
+      <summary>
+            道路路口信息  
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapReGeoCode.Pois">
+      <summary>
+            兴趣点信息
+            </summary>
+    </member>
+    <member name="T:Com.AMap.Api.Services.Results.AMapRichContent">
+      <summary>
+            动态市场信息类
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapRichContent.Groupbuys">
+      <summary>
+            团购信息
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapRichContent.Discounts">
+      <summary>
+            优惠信息
+            </summary>
+    </member>
+    <member name="T:Com.AMap.Api.Services.Results.AMapRoad">
+      <summary>
+            道路类
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapRoad.Id">
+      <summary>
+            道路ID
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapRoad.Name">
+      <summary>
+            道路名称
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapRoad.Distance">
+      <summary>
+            距离（单位：米）
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapRoad.Direction">
+      <summary>
+            方向
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapRoad.Location">
+      <summary>
+            坐标点
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapRoad.Citycode">
+      <summary>
+            城市编码
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapRoad.Width">
+      <summary>
+            道路宽度
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapRoad.Type">
+      <summary>
+            道路分类
+            </summary>
+    </member>
+    <member name="T:Com.AMap.Api.Services.Results.AMapRoadInter">
+      <summary>
+            道路交叉口
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapRoadInter.Distance">
+      <summary>
+             距离（单位：米）
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapRoadInter.Direction">
+      <summary>
+            方向
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapRoadInter.Location">
+      <summary>
+            经纬度
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapRoadInter.First_id">
+      <summary>
+            第一条道路ID
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapRoadInter.First_name">
+      <summary>
+            第一条道路名称
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapRoadInter.Second_id">
+      <summary>
+            第二条道路ID
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapRoadInter.Second_name">
+      <summary>
+            第二条道路名称
+            </summary>
+    </member>
+    <member name="T:Com.AMap.Api.Services.Results.AMapStreetNumber">
+      <summary>
+            门牌信息
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapStreetNumber.Street">
+      <summary>
+            街道名称
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapStreetNumber.Number">
+      <summary>
+            门牌号
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapStreetNumber.Location">
+      <summary>
+            坐标点
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapStreetNumber.Distance">
+      <summary>
+            距离（单位：米）
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapStreetNumber.Direction">
+      <summary>
+            方向
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapTipResults.Count">
+      <summary>
+            返回信息总数
+            </summary>
+    </member>
+    <member name="T:Com.AMap.Api.Services.Results.AMapTMC">
+      <summary>
+            实时路况信息
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapTMC.Lcode">
+      <summary>
+            路况信息对应的locationcode
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapTMC.Distance">
+      <summary>
+             路段长度（单位：米）
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapTMC.Status">
+      <summary>
+             路况状态：0-未知；1-畅通；2-缓行；3-拥堵
+            </summary>
+    </member>
+    <member name="T:Com.AMap.Api.Services.Results.AMapTransit">
+      <summary>
+             公交方案
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapTransit.Cost">
+      <summary>
+            此公交方案价格（单位：元）
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapTransit.Duration">
+      <summary>
+            此换乘方案预期时间（单位：秒）
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapTransit.Nightflag">
+      <summary>
+            是否是夜班车
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapTransit.Walking_distance">
+      <summary>
+            此方案总步行距离（单位：米）
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapTransit.Segments">
+      <summary>
+            换乘路段
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapTravelDeepContent.Level">
+      <summary>
+             景区国标级别
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapTravelDeepContent.Price">
+      <summary>
+             门票价格
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapTravelDeepContent.Season">
+      <summary>
+            适合游玩的月份，多个月份用"|"隔开
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapTravelDeepContent.Recommend">
+      <summary>
+             推荐景点 ，多个景点用"|"隔开
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapTravelDeepContent.Theme">
+      <summary>
+            景区主题
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapTravelDeepContent.Ordering_wap_url">
+      <summary>
+            手机端购票网址
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapTravelDeepContent.Ordering_web_url">
+      <summary>
+             网页版购票网址
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapTravelDeepContent.Opentime_GDF">
+      <summary>
+            规范格式的营业时间
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapTravelDeepContent.Opentime">
+      <summary>
+            非规范格式的营业时间
+            </summary>
+    </member>
+    <member name="T:Com.AMap.Api.Services.Results.AMapWalking">
+      <summary>
+            步行导航信息
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapWalking.Origin">
+      <summary>
+            起点坐标
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapWalking.Destination">
+      <summary>
+            终点坐标
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapWalking.Distance">
+      <summary>
+            起点和终点的步行距离
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapWalking.Duration">
+      <summary>
+            步行预计时间
+            </summary>
+    </member>
+    <member name="P:Com.AMap.Api.Services.Results.AMapWalking.Steps">
+      <summary>
+            步行路段
+            </summary>
+    </member>
+  </members>
+</doc>
