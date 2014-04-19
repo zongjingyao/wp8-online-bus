@@ -87,13 +87,13 @@
 							</Grid.RowDefinitions>
 							<toolkit:WrapPanel HorizontalAlignment="Left" VerticalAlignment="Top">
 								<TextBlock TextWrapping="Wrap" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding FootDistance, Converter={StaticResource routeDetailFootDistanceConverter}}"/>
-								<Button x:Name="btnStart" BorderThickness="0" FontSize="30" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" Foreground="Lime" Content="{Binding StartStat}" Click="btnStat_Click"/>
+                                <Button x:Name="btnStart" BorderThickness="0" FontSize="30" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" Foreground="Lime" Content="{Binding StartStat}" Click="btnStat_Click" Style="{StaticResource ButtonStyleForCommon}"/>
 							</toolkit:WrapPanel>
 							<toolkit:WrapPanel HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1">
 								<TextBlock TextWrapping="Wrap" Text="乘" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                <Button x:Name="btnLine" BorderThickness="0" FontSize="30" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Lime" Content="{Binding LineName}" Height="73" Click="btnLine_Click"/>
+                                <Button x:Name="btnLine" BorderThickness="0" FontSize="30" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Lime" Content="{Binding LineName}" Height="73" Click="btnLine_Click" Style="{StaticResource ButtonStyleForCommon}"/>
 								<TextBlock TextWrapping="Wrap" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,27" Text="{Binding Stats.Length, Converter={StaticResource routeDetailStatCountConverter}}"/>
-                                <Button x:Name="btnEnd" BorderThickness="0" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" Padding="0" Foreground="Lime" Content="{Binding EndStat}" Click="btnStat_Click"/>
+                                <Button x:Name="btnEnd" BorderThickness="0" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" Padding="0" Foreground="Lime" Content="{Binding EndStat}" Click="btnStat_Click" Style="{StaticResource ButtonStyleForCommon}"/>
 							</toolkit:WrapPanel>
 						</Grid>
 					</DataTemplate>
