@@ -179,6 +179,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\AppBar\favs.png" />
+    <Content Include="Assets\AppBar\share.png" />
     <Content Include="Assets\bktile.data" />
     <Content Include="Assets\DrawLinePixelShader.cso" />
     <Content Include="Assets\DrawLineVertexShader.cso" />

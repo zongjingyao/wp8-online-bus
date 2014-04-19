@@ -112,7 +112,7 @@
                         <toolkit:PhoneTextBox x:Name="ptbxEnd" Margin="0" TextWrapping="Wrap" VerticalAlignment="Top" Hint="终点：" BorderThickness="0" Padding="0" Grid.Row="2" Height="80" FontSize="32"/>
                         <Button x:Name="btnSearch" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" BorderThickness="0" Click="btnSearch_Click" Grid.Column="1" Grid.RowSpan="2" Padding="0" Width="80" Height="80">
                             <Button.Background>
-                                <ImageBrush ImageSource="Assets/Image/search.png" Stretch="Uniform"/>
+                                <ImageBrush ImageSource="Assets/Images/search.png" Stretch="Uniform"/>
                             </Button.Background>
                         </Button>
                     </Grid>
@@ -127,7 +127,7 @@
                         <toolkit:PhoneTextBox x:Name="ptbxLineName" Margin="0" TextWrapping="Wrap" VerticalAlignment="Top" Height="80" Hint="请输入查询线路" BorderThickness="0" Padding="0" TextChanged="ptbxLineName_TextChanged" FontSize="32"/>
                         <Button x:Name="btnSearchForLine" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Height="72" Width="72" Margin="344,4,0,0" BorderThickness="0" Click="btnSearchForLine_Click">
                             <Button.Background>
-                                <ImageBrush ImageSource="Assets/Image/search.png" Stretch="Uniform"/>
+                                <ImageBrush ImageSource="Assets/Images/search.png" Stretch="Uniform"/>
                             </Button.Background>
                         </Button>
                         <phone:LongListSelector x:Name="llsLines" Margin="0" Tap="llsLines_Tap" Padding="8,0,0,0" Grid.Row="1">
@@ -158,7 +158,7 @@
                                 <ImageBrush Stretch="Fill"/>
                             </Button.Foreground>
                             <Button.Background>
-                                <ImageBrush ImageSource="Assets/Image/search.png" Stretch="Uniform"/>
+                                <ImageBrush ImageSource="Assets/Images/search.png" Stretch="Uniform"/>
                             </Button.Background>
                         </Button>
                         <Grid x:Name="gdSearchedStat" Grid.Row="1" Visibility="Collapsed">
@@ -206,7 +206,7 @@
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="附近站点" VerticalAlignment="Center" FontSize="35" Margin="8,0,0,0"/>
                             <Button x:Name="btnMap" Content="" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="1" BorderThickness="0" Foreground="{x:Null}" Padding="0" Width="100" Height="100" Click="btnMap_Click">
                                 <Button.Background>
-                                    <ImageBrush Stretch="Uniform" ImageSource="/Assets/Image/maps.png"/>
+                                    <ImageBrush Stretch="Uniform" ImageSource="/Assets/Images/maps.png"/>
                                 </Button.Background>
                             </Button>
                         </Grid>

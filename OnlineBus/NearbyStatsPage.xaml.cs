@@ -87,7 +87,7 @@ namespace OnlineBus
                 Position = m_args.LngLat,//图标的位置
                 Title = "我的位置",
                 Snippet = m_args.LngLat.ToString(),
-                IconUri = new Uri("./Assets/Image/marker_gps_no_sharing.png", UriKind.Relative),//图标的URL
+                IconUri = new Uri("./Assets/Images/marker_gps_no_sharing.png", UriKind.Relative),//图标的URL
                 Anchor = new Point(0.5, 0.5),//图标中心点
             });
 
