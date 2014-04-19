@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Windows;
@@ -9,10 +8,9 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using System.IO;
 using System.Collections.ObjectModel;
-using System.Xml.Linq;
-using System.Xml;
 using System.IO.IsolatedStorage;
 using System.Diagnostics;
+using Microsoft.Phone.Tasks;
 
 namespace OnlineBus
 {
@@ -145,7 +143,42 @@ namespace OnlineBus
 
         private void appBarBtnShare_Click(object sender, System.EventArgs e)
         {
-        	// 在此处添加事件处理程序实现。
+            int time = int.Parse((string)m_bus.Time);
+            string strTime;
+            if(time < 60)
+            {
+                strTime = "用时约" + time + "分钟，";
+            }
+            else
+            {
+                strTime = "用时约" + time/60 + "小时" + time%60 + "分钟，";
+            }
+
+            int distance = int.Parse((string)m_bus.Distance);
+            string strDist;
+            if(distance <= 1000)
+            {
+                strDist = "距离约" + distance + "米";
+            }
+            else
+            {
+                strDist = "距离约" + (distance/1000.0).ToString("0.0") + "公里";
+            }
+
+            string content = "我用#在线公交#分享了一条公交换乘路线：";
+            content += m_strStart + "→" + m_strEnd + "：";
+            content += "换乘" + m_bus.ChangeBusCount + "次，" + strTime + strDist + "。换乘详细：";
+            foreach(Segment seg in m_bus.Segments)
+            {
+                content += "步行" + seg.FootDistance + "米到" + seg.StartStat;
+                content += ",乘" + seg.LineName + "(" + seg.Stats.Length + "站)到" + seg.EndStat + ";";
+            }
+            Debug.WriteLine(content);
+            SmsComposeTask sct = new SmsComposeTask();
+            //sct.To = "";
+            sct.Body = content;
+            sct.Show();
+
         }
     }
 }

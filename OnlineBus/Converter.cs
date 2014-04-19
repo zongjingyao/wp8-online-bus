@@ -113,7 +113,7 @@ namespace OnlineBus
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return "(" + (int)value + "站)";
+            return "(" + (int)value + "站)到";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
