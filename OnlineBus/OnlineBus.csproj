@@ -129,6 +129,9 @@
     <Compile Include="RouteDetailPage.xaml.cs">
       <DependentUpon>RouteDetailPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="StatDetailPage.xaml.cs">
+      <DependentUpon>StatDetailPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Station.cs" />
     <Compile Include="WebService.cs" />
     <Compile Include="XMLUtils.cs" />
@@ -167,6 +170,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="RouteDetailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="StatDetailPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
