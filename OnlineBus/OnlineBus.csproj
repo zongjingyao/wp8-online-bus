@@ -125,6 +125,30 @@
     <Content Include="Assets\ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\citys.xml" />
+    <Content Include="Assets\Images\AZURE.png" />
+    <Content Include="Assets\Images\background.jpg" />
+    <Content Include="Assets\Images\BLUE.png" />
+    <Content Include="Assets\Images\bus.png" />
+    <Content Include="Assets\Images\bus_end_pic.png" />
+    <Content Include="Assets\Images\bus_start_pic.png" />
+    <Content Include="Assets\Images\car.png" />
+    <Content Include="Assets\Images\CYAN.png" />
+    <Content Include="Assets\Images\GREEN.png" />
+    <Content Include="Assets\Images\ListIcon.png" />
+    <Content Include="Assets\Images\location.png" />
+    <Content Include="Assets\Images\location_on.png" />
+    <Content Include="Assets\Images\MAGENTAV.png" />
+    <Content Include="Assets\Images\man.png" />
+    <Content Include="Assets\Images\maps.png" />
+    <Content Include="Assets\Images\marker_gps_no_sharing.png" />
+    <Content Include="Assets\Images\ORANGE.png" />
+    <Content Include="Assets\Images\RED.png" />
+    <Content Include="Assets\Images\ROSE.png" />
+    <Content Include="Assets\Images\search.png" />
+    <Content Include="Assets\Images\search1.png" />
+    <Content Include="Assets\Images\VIOLET.png" />
+    <Content Include="Assets\Images\YELLOW.png" />
     <Content Include="Assets\Tiles\FlipCycleTileLarge.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
