@@ -49,7 +49,7 @@
         <!--TitlePanel 包含应用程序的名称和页标题-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
             <TextBlock x:Name="tbkCity" Text="城市管理" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Margin="9,-7,0,0" FontSize="50" Text="选择城市"/>
+            <TextBlock Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Text="选择城市"/>
         </StackPanel>
 
         <!--ContentPanel - 在此处放置其他内容-->

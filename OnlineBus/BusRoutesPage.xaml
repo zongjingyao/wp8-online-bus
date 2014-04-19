@@ -55,8 +55,8 @@
 
         <!--TitlePanel 包含应用程序的名称和页标题-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="tbkCity" Text="城市-南京" FontSize="20"/>
-            <TextBlock Text="换乘方案" Margin="9,4,0,0" FontSize="40"/>
+            <TextBlock x:Name="tbkCity" Text="城市-南京" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock Text="换乘方案" Margin="9,4,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
         <!--ContentPanel - 在此处放置其他内容-->

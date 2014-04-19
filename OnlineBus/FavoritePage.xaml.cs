@@ -20,6 +20,7 @@ namespace OnlineBus
         {
             InitializeComponent();
 
+            tbkCity.Text = "城市-" + WebService.GetCity();
             BindData();
         }
 
