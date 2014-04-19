@@ -7,6 +7,8 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using OnlineBus.Resources;
+using Com.AMap.Api.Maps;
+using Com.AMap.Api.Services;
 
 namespace OnlineBus
 {
@@ -61,6 +63,9 @@ namespace OnlineBus
         // 此代码在重新激活应用程序时不执行
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
+            //用户Key，搜索功能必须使用Key
+            AMapConfig.Key = "e9dd7107dc50871ed64741a3e234ef8d";//地图显示key
+            AMapSearchConfig.Key = "e9dd7107dc50871ed64741a3e234ef8d";//搜索Key
         }
 
         // 激活应用程序(置于前台)时执行的代码
