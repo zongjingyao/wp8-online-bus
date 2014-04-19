@@ -8,7 +8,7 @@ using System.IO.IsolatedStorage;
 using System.Diagnostics;
 using Windows.Storage;
 
-namespace BusTest
+namespace OnlineBus
 {
     public class XMLUtils
     {

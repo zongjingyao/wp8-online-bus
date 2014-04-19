@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Globalization;
 using Microsoft.Phone.Globalization;
 
-namespace BusTest
+namespace OnlineBus
 {
     public class City
     {

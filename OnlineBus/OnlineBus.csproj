@@ -98,6 +98,12 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Bus.cs" />
+    <Compile Include="BusLinesPage.xaml.cs">
+      <DependentUpon>BusLinesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BusRoutesPage.xaml.cs">
+      <DependentUpon>BusRoutesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="City.cs" />
     <Compile Include="Converter.cs" />
     <Compile Include="Line.cs" />
@@ -123,6 +129,14 @@
     <Page Include="AboutPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="BusLinesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BusRoutesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>

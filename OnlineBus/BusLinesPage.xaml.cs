@@ -10,9 +10,9 @@ using Microsoft.Phone.Shell;
 
 namespace OnlineBus
 {
-    public partial class AboutPage : PhoneApplicationPage
+    public partial class BusLinesPage : PhoneApplicationPage
     {
-        public AboutPage()
+        public BusLinesPage()
         {
             InitializeComponent();
         }

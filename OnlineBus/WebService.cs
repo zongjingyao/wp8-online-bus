@@ -8,7 +8,7 @@ using System.IO;
 using System.Net;
 using System.IO.IsolatedStorage;
 
-namespace BusTest
+namespace OnlineBus
 {
     public class WebService
     {
