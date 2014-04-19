@@ -236,7 +236,6 @@
     <Content Include="Assets\Images\RED.png" />
     <Content Include="Assets\Images\ROSE.png" />
     <Content Include="Assets\Images\search.png" />
-    <Content Include="Assets\Images\search1.png" />
     <Content Include="Assets\Images\VIOLET.png" />
     <Content Include="Assets\Images\YELLOW.png" />
     <Content Include="Assets\Tiles\FlipCycleTileLarge.png">

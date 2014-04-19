@@ -98,36 +98,37 @@
         <!--ContentPanel - 在此处放置其他内容-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <phone:Pivot Margin="0" Title="城市-南京" x:Name="ptMain">
-                <phone:PivotItem CacheMode="{x:Null}" Header="换乘查询">
-                    <Grid Margin="0" VerticalAlignment="Top">
+                <phone:PivotItem CacheMode="{x:Null}" Header="换乘查询" Margin="12,28,0,0">
+                    <Grid Margin="0,0,12,0" VerticalAlignment="Top">
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
-                            <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <toolkit:PhoneTextBox x:Name="ptbxStart" Margin="0,4,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Hint="起点：" BorderThickness="0" Padding="0" Height="80" FontSize="32"/>
-                        <toolkit:PhoneTextBox x:Name="ptbxEnd" Margin="0" TextWrapping="Wrap" VerticalAlignment="Top" Hint="终点：" BorderThickness="0" Padding="0" Grid.Row="2" Height="80" FontSize="32"/>
-                        <Button x:Name="btnSearch" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" BorderThickness="0" Click="btnSearch_Click" Grid.Column="1" Grid.RowSpan="2" Padding="0" Width="80" Height="80">
+                        <Border BorderBrush="Black" BorderThickness="0" Grid.RowSpan="3" Grid.ColumnSpan="2" Background="#4CFFFFFF"/>
+                        <toolkit:PhoneTextBox x:Name="ptbxStart" Margin="0,10,0,0" VerticalAlignment="Top" Hint="起点：" BorderThickness="0,0,0,2" Padding="4,0,0,0" Height="80" FontSize="32" Background="{x:Null}"/>
+                        <toolkit:PhoneTextBox x:Name="ptbxEnd" Margin="0" VerticalAlignment="Top" Hint="终点：" BorderThickness="0,0,0,2" Padding="4,0,0,0" Grid.Row="1" Height="80" FontSize="32" Background="{x:Null}"/>
+                        <Button x:Name="btnSearch" HorizontalAlignment="Right" Margin="0,0,32,0" VerticalAlignment="Center" BorderThickness="0" Click="btnSearch_Click" Grid.Row="2" Grid.Column="0" Padding="0" Width="100" Height="100" Grid.RowSpan="1">
                             <Button.Background>
-                                <ImageBrush ImageSource="Assets/Images/search.png" Stretch="Uniform"/>
+                                <ImageBrush ImageSource="Assets/Images/search.png" Stretch="UniformToFill"/>
                             </Button.Background>
                         </Button>
                     </Grid>
 
                 </phone:PivotItem>
                 <phone:PivotItem CacheMode="{x:Null}" Header="线路查询">
-                    <Grid Margin="0">
+                    <Grid Margin="0,8,0,0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <toolkit:PhoneTextBox x:Name="ptbxLineName" Margin="0" TextWrapping="Wrap" VerticalAlignment="Top" Height="80" Hint="请输入查询线路" BorderThickness="0" Padding="0" TextChanged="ptbxLineName_TextChanged" FontSize="32"/>
-                        <Button x:Name="btnSearchForLine" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Height="72" Width="72" Margin="344,4,0,0" BorderThickness="0" Click="btnSearchForLine_Click">
+                        <toolkit:PhoneTextBox x:Name="ptbxLineName" Margin="0" TextWrapping="Wrap" VerticalAlignment="Top" Height="80" Hint="请输入查询线路" BorderThickness="0,0,0,2" Padding="4,0,0,0" TextChanged="ptbxLineName_TextChanged" FontSize="32" Background="{x:Null}"/>
+                        <Button x:Name="btnSearchForLine" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Height="80" Width="80" Margin="344,2,0,0" BorderThickness="0" Click="btnSearchForLine_Click" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2">
                             <Button.Background>
-                                <ImageBrush ImageSource="Assets/Images/search.png" Stretch="Uniform"/>
+                                <ImageBrush ImageSource="/Assets/Images/search.png" Stretch="UniformToFill"/>
                             </Button.Background>
                         </Button>
                         <phone:LongListSelector x:Name="llsLines" Margin="0" Tap="llsLines_Tap" Padding="8,0,0,0" Grid.Row="1">
@@ -147,13 +148,13 @@
                     </Grid>
                 </phone:PivotItem>
                 <phone:PivotItem Header="站点查询" Margin="12,28,12,0" VerticalAlignment="Top">
-                    <Grid Margin="0">
+                    <Grid Margin="0,8,0,0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <toolkit:PhoneTextBox x:Name="ptbxStatName" Margin="0" TextWrapping="Wrap" VerticalAlignment="Top" Height="80" Hint="请输入查询站点" BorderThickness="0" Padding="0" TextChanged="ptbxStatName_TextChanged" FontSize="32"/>
-                        <Button x:Name="btnSearchForStat" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Height="72" Width="72" Margin="344,4,0,0" BorderThickness="0" Click="btnSearchForStat_Click">
+                        <toolkit:PhoneTextBox x:Name="ptbxStatName" Margin="0" TextWrapping="Wrap" VerticalAlignment="Top" Height="80" Hint="请输入查询站点" BorderThickness="0,0,0,2" Padding="4,0,0,0" TextChanged="ptbxStatName_TextChanged" FontSize="32" Background="{x:Null}"/>
+                        <Button x:Name="btnSearchForStat" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Height="80" Width="80" Margin="344,2,0,0" BorderThickness="0" Click="btnSearchForStat_Click">
                             <Button.Foreground>
                                 <ImageBrush Stretch="Fill"/>
                             </Button.Foreground>
