@@ -98,9 +98,6 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Bus.cs" />
-    <Compile Include="BusLinesPage.xaml.cs">
-      <DependentUpon>BusLinesPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="BusRoutesPage.xaml.cs">
       <DependentUpon>BusRoutesPage.xaml</DependentUpon>
     </Compile>
@@ -129,6 +126,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="RouteDetailPage.xaml.cs">
+      <DependentUpon>RouteDetailPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Station.cs" />
     <Compile Include="WebService.cs" />
     <Compile Include="XMLUtils.cs" />
@@ -141,10 +141,6 @@
     <Page Include="AboutPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="BusLinesPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="BusRoutesPage.xaml">
       <SubType>Designer</SubType>
@@ -167,6 +163,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="NearbyStatsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="RouteDetailPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
