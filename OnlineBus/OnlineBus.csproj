@@ -115,6 +115,29 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\bktile.data" />
+    <Content Include="Assets\DrawLinePixelShader.cso" />
+    <Content Include="Assets\DrawLineVertexShader.cso" />
+    <Content Include="Assets\DrawPolygonPixelShader.cso" />
+    <Content Include="Assets\DrawPolygonVertexShader.cso" />
+    <Content Include="Assets\ft2.data" />
+    <Content Include="Assets\icn_hv3.data" />
+    <Content Include="Assets\icn_lv3.data" />
+    <Content Include="Assets\InsertPicturePixelShader.cso" />
+    <Content Include="Assets\InsertPictureVertexShader.cso" />
+    <Content Include="Assets\lr.data" />
+    <Content Include="Assets\lt.cso" />
+    <Content Include="Assets\ltc.cso" />
+    <Content Include="Assets\oc.cso" />
+    <Content Include="Assets\ov2.cso" />
+    <Content Include="Assets\ov3.cso" />
+    <Content Include="Assets\ra.data" />
+    <Content Include="Assets\rd.data" />
+    <Content Include="Assets\style_lv3.data" />
+    <Content Include="Assets\style_slv3.data" />
+    <Content Include="Assets\v3t.cso" />
+    <Content Include="Assets\vvt.cso" />
+    <Content Include="Assets\wk.data" />
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml">
@@ -165,6 +188,7 @@
     <Content Include="Assets\Tiles\IconicTileSmall.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="LibMap.dll" />
     <Content Include="README_FIRST.txt" />
     <Content Include="Toolkit.Content\ApplicationBar.Add.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
@@ -179,6 +203,18 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="AMapSDKV2Comp">
+      <HintPath>..\AMAP3DEngine\references\arm\debug\AMapSDKV2Comp.winmd</HintPath>
+    </Reference>
+    <Reference Include="Com.AMap.Api.Maps">
+      <HintPath>..\AMAP3DEngine\references\arm\debug\Com.AMap.Api.Maps.dll</HintPath>
+    </Reference>
+    <Reference Include="Com.AMap.Api.Services">
+      <HintPath>..\AMAP3DEngine\references\arm\debug\Com.AMap.Api.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.ProtocolBuffers">
+      <HintPath>..\AMAP3DEngine\references\arm\debug\Google.ProtocolBuffers.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Phone.Controls.Toolkit">
       <HintPath>..\packages\WPtoolkit.4.2013.08.16\lib\wp8\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
     </Reference>
