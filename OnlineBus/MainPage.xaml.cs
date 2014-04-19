@@ -8,34 +8,347 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using OnlineBus.Resources;
+using System.Diagnostics;
+using System.IO;
+using System.Collections.ObjectModel;
+using System.Xml.Linq;
+using Com.AMap.Api.Services.Results;
+using Com.AMap.Api.Services;
+using Com.AMap.Api.Maps;
+using Com.AMap.Api.Maps.Model;
+using System.IO.IsolatedStorage;
+using System.Threading.Tasks;
 
 namespace OnlineBus
 {
     public partial class MainPage : PhoneApplicationPage
     {
+        private Line m_selectedLine = null;
+        private Station m_selectedStat = null;
+        private ObservableCollection<Station> m_nearbyStats = null;
+        private PhoneApplicationService m_myService = PhoneApplicationService.Current;
+        private LatLng m_location;
+        private AMapGeolocator m_mylocation = null;
+        private string DEFAULT_DIST = "500";
+        private AMapPositionChangedEventArgs m_args;
+        private bool m_bIsCheckedCity = false;
+
         // 构造函数
         public MainPage()
         {
             InitializeComponent();
 
+            ptMain.Title = "城市-" + WebService.GetCity();
+
             // 用于本地化 ApplicationBar 的示例代码
             //BuildLocalizedApplicationBar();
         }
 
-        // 用于生成本地化 ApplicationBar 的示例代码
-        //private void BuildLocalizedApplicationBar()
-        //{
-        //    // 将页面的 ApplicationBar 设置为 ApplicationBar 的新实例。
-        //    ApplicationBar = new ApplicationBar();
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            string strStart = ptbxStart.Text;
+            string strEnd = ptbxEnd.Text;
+            if (strStart.Trim().Length <= 0 || strEnd.Trim().Length <= 0)
+            {
+                MessageBox.Show("请输入站点名", "提醒", MessageBoxButton.OK);
+                return;
+            }
 
-        //    // 创建新按钮并将文本值设置为 AppResources 中的本地化字符串。
-        //    ApplicationBarIconButton appBarButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.add.rest.png", UriKind.Relative));
-        //    appBarButton.Text = AppResources.AppBarButtonText;
-        //    ApplicationBar.Buttons.Add(appBarButton);
+            NavigationService.Navigate(new Uri("/BusRoutesPage.xaml?start=" + strStart + "&end=" + strEnd, UriKind.Relative));
+        }
 
-        //    // 使用 AppResources 中的本地化字符串创建新菜单项。
-        //    ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.AppBarMenuItemText);
-        //    ApplicationBar.MenuItems.Add(appBarMenuItem);
-        //}
+        private void LineWebClient_Completed(object sender, OpenReadCompletedEventArgs e)
+        {
+            using (StreamReader reader = new StreamReader(e.Result))
+            {
+                string contents = reader.ReadToEnd();
+                ObservableCollection<Line> lines = XMLUtils.parseXMLForLine(contents);
+                if (lines.Count == 0)
+                {
+                    MessageBox.Show("无此线路");
+                }
+                else
+                {
+                    llsLines.ItemsSource = lines;
+                }
+
+                pgbLine.Visibility = Visibility.Collapsed;
+                btnSearchForLine.IsEnabled = true;
+            }
+        }
+
+        private void llsLines_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            var listSelector = sender as LongListSelector;
+            if (listSelector.SelectedItem == null)
+                return;
+            m_selectedLine = listSelector.SelectedItem as Line;
+
+            NavigationService.Navigate(new Uri("/LineDetailPage.xaml", UriKind.Relative));
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            if (m_selectedLine != null)
+            {
+                m_myService.State["selectedLine"] = m_selectedLine;
+            }
+
+            if (m_selectedStat != null)
+            {
+                m_myService.State["selectedStat"] = m_selectedStat;
+            }
+
+            if (m_nearbyStats != null)
+            {
+                m_myService.State["nearbyStats"] = m_nearbyStats;
+            }
+
+            if (m_args != null)
+            {
+                m_myService.State["args"] = m_args;
+            }
+
+            base.OnNavigatedFrom(e);
+        }
+
+        private void btnSearchForLine_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            string strLineName = ptbxLineName.Text;
+            if (strLineName.Trim().Length == 0)
+            {
+                MessageBox.Show("请输入线路名", "提醒", MessageBoxButton.OK);
+            }
+            else
+            {
+                pgbLine.Visibility = Visibility.Visible;
+                btnSearchForLine.IsEnabled = false;
+                WebService.GetBusLines(strLineName, LineWebClient_Completed);
+            }
+        }
+
+        private void btnSearchForStat_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            string strStatName = ptbxStatName.Text.Trim();
+            if (strStatName.Length == 0)
+            {
+                MessageBox.Show("请输入站点名", "提醒", MessageBoxButton.OK);
+            }
+            else
+            {
+                pgbStat.Visibility = Visibility.Visible;
+                btnSearchForStat.IsEnabled = false;
+                WebService.GetStats(strStatName, StatWebClient_Completed);
+            }
+        }
+
+        private void StatWebClient_Completed(object sender, OpenReadCompletedEventArgs e)
+        {
+            using (StreamReader reader = new StreamReader(e.Result))
+            {
+                string contents = reader.ReadToEnd();
+                ObservableCollection<Station> stats = XMLUtils.parseXMLForStat(contents);
+                if (stats.Count == 0)
+                {
+                    MessageBox.Show("无此站点");
+                }
+                else
+                {
+                    llsStats.ItemsSource = stats;
+                    gdSearchedStat.Visibility = Visibility.Visible;
+                    gdNearbyStat.Visibility = Visibility.Collapsed;
+                }
+
+                pgbStat.Visibility = Visibility.Collapsed;
+                btnSearchForStat.IsEnabled = true;
+            }
+        }
+
+        private void llsStats_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            var listSelector = sender as LongListSelector;
+            if (listSelector.SelectedItem == null)
+                return;
+            m_selectedStat = listSelector.SelectedItem as Station;
+
+            NavigationService.Navigate(new Uri("/StatDetailPage.xaml", UriKind.Relative));
+        }
+
+        private void btnChooseCity_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/CitysPage.xaml", UriKind.Relative));
+        }
+
+        private void btnAbout_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/AboutPage.xaml", UriKind.Relative));
+        }
+
+        private void PhoneApplicationPage_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("确定要退出吗？", "", MessageBoxButton.OKCancel);
+            if (result == MessageBoxResult.Cancel)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void ptbxLineName_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            if (ptbxLineName.Text.Trim().Length == 0)
+            {
+                llsLines.ItemsSource = null;
+            }
+        }
+
+        private void ptbxStatName_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            if (ptbxStatName.Text.Trim().Length == 0)
+            {
+                llsStats.ItemsSource = null;
+                if (llsNearbyStats.ItemsSource != null)
+                {
+                    gdSearchedStat.Visibility = Visibility.Collapsed;
+                    gdNearbyStat.Visibility = Visibility.Visible;
+                }
+            }
+        }
+
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            m_mylocation = new AMapGeolocator();
+            m_mylocation.Start();
+            //触发位置改变事件
+            m_mylocation.PositionChanged += mylocation_PositionChanged;
+        }
+
+        private void PhoneApplicationPage_Unloaded(object sender, RoutedEventArgs e)
+        {
+            if (m_mylocation != null)
+            {
+                m_mylocation.PositionChanged -= mylocation_PositionChanged;
+                m_mylocation.Stop();
+            }
+        }
+
+        private async void mylocation_PositionChanged(AMapGeolocator sender, AMapPositionChangedEventArgs args)
+        {
+            m_location = args.LngLat;
+            m_args = args;
+            Debug.WriteLine("定位精度：" + args.Accuracy + "米");
+            Debug.WriteLine("定位经纬度：" + args.LngLat);
+            flashNearbyStat();
+
+            if (!m_bIsCheckedCity)
+            {
+                Debug.WriteLine("开始检查城市");
+                await CheckCity(args.LngLat.longitude, args.LngLat.latitude);
+            }
+        }
+
+        private async Task CheckCity(double lon, double lat)
+        {
+            AMapReGeoCodeResult rcc = await AMapReGeoCodeSearch.GeoCodeToAddress(lon, lat);
+
+            this.Dispatcher.BeginInvoke(() =>
+            {
+                if (rcc.Erro == null && rcc.ReGeoCode != null)
+                {
+                    AMapReGeoCode regeocode = rcc.ReGeoCode;
+                    AMapAddressComponent addressComponent = regeocode.Address_component;
+                    string strCurrentCity = addressComponent.City;
+                    if (strCurrentCity.Contains("市"))
+                    {
+                        strCurrentCity = strCurrentCity.Replace("市", "");
+                    }
+                    Debug.WriteLine("当前城市：" + strCurrentCity);
+                    Debug.WriteLine("设置城市：" + WebService.GetCity());
+
+                    if (!WebService.GetCity().Equals(strCurrentCity))
+                    {
+                        List<string> keys = new List<string>();
+                        List<City> citys = new List<City>();
+                        XMLUtils.ParseXMLForCitys(keys, citys);
+                        bool isFind = false;
+                        foreach (City city in citys)
+                        {
+                            if (strCurrentCity.Equals(city.CityName))
+                            {
+                                isFind = true;
+                                break;
+                            }
+                        }
+                        if (isFind)
+                        {
+                            if (MessageBox.Show("是否切换到当前城市？", "提示", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                            {
+                                IsolatedStorageSettings appSettings;
+                                appSettings = IsolatedStorageSettings.ApplicationSettings;
+                                if (appSettings.Contains("city"))
+                                {
+                                    appSettings["city"] = strCurrentCity;
+                                }
+                                else
+                                {
+                                    appSettings.Add("city", strCurrentCity);
+                                }
+                                appSettings.Save();
+                                WebService.City = strCurrentCity;
+                                ptMain.Title = "城市-" + WebService.GetCity();
+                            }
+                        }
+                        else
+                        {
+                            Debug.WriteLine("不支持当前城市！");
+                        }
+                    }
+                }
+                else
+                {
+                    //MessageBox.Show(rcc.Erro.Message);
+                }
+
+            });
+
+            m_bIsCheckedCity = true;
+        }
+
+        private void flashNearbyStat()
+        {
+            WebService.GetNearbyStats(m_location.longitude.ToString(),
+                                        m_location.latitude.ToString(),
+                                        DEFAULT_DIST,
+                                        NearByStatWebClient_Completed);
+        }
+
+        private void NearByStatWebClient_Completed(object sender, OpenReadCompletedEventArgs e)
+        {
+            using (StreamReader reader = new StreamReader(e.Result))
+            {
+                string contents = reader.ReadToEnd();
+                m_nearbyStats = XMLUtils.parseXMLForNearbyStat(contents);
+                if (m_nearbyStats.Count != 0)
+                {
+                    this.Dispatcher.BeginInvoke(() =>
+                    {
+                        llsNearbyStats.ItemsSource = m_nearbyStats;
+                        if (gdSearchedStat.Visibility != Visibility.Visible)
+                        {
+                            gdNearbyStat.Visibility = Visibility.Visible;
+                        }
+                    });
+                }
+            }
+        }
+
+        private void btnMap_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/NearByStatsPage.xaml", UriKind.Relative));
+        }
+
+        private void btnFav_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/FavoritePage.xaml", UriKind.Relative));
+        }
     }
 }
