@@ -12,7 +12,7 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="False">
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
@@ -73,10 +73,10 @@
         						<RowDefinition/>
         						<RowDefinition Height="Auto"/>
         					</Grid.RowDefinitions>
-        					<Image x:Name="imgStart" HorizontalAlignment="Right" Height="45" VerticalAlignment="Top" Width="45" Source="/Assets/Image/GREEN.png"/>
+        					<Image x:Name="imgStart" HorizontalAlignment="Right" Height="45" VerticalAlignment="Top" Width="45" Source="/Assets/Images/GREEN.png"/>
                             <TextBlock HorizontalAlignment="Left" FontSize="30" TextWrapping="Wrap" Text="起点：" VerticalAlignment="Top" Grid.Column="1"/>
                             <TextBlock HorizontalAlignment="Left" FontSize="30" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="2" Text="{Binding StartStat}"/>
-        					<Image x:Name="imgEnd" HorizontalAlignment="Right" Height="45" VerticalAlignment="Top" Width="45" Grid.Row="1" Source="/Assets/Image/RED.png"/>
+        					<Image x:Name="imgEnd" HorizontalAlignment="Right" Height="45" VerticalAlignment="Top" Width="45" Grid.Row="1" Source="/Assets/Images/RED.png"/>
                             <TextBlock HorizontalAlignment="Left" FontSize="30" TextWrapping="Wrap" Text="终点：" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1"/>
                             <TextBlock HorizontalAlignment="Left" FontSize="30" TextWrapping="Wrap" Text="{Binding EndStat}" VerticalAlignment="Top" Grid.Row="1" Grid.Column="2"/>
         					<Border BorderBrush="White" BorderThickness="1" Grid.ColumnSpan="3" Height="2" VerticalAlignment="Top" Grid.Row="2" Margin="0,8,0,0" Background="White"/>

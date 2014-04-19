@@ -98,7 +98,7 @@ namespace OnlineBus
                     Position = new LatLng(stat.Latitude,stat.Longitude),
                     Title = stat.StationName,
                     Snippet = stat.StationName,
-                    IconUri = new Uri("./Assets/Image/BLUE.png", UriKind.Relative),
+                    IconUri = new Uri("./Assets/Images/BLUE.png", UriKind.Relative),
                 };
                 m_amap.AddMarker(opt);
             }
