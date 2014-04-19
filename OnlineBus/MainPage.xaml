@@ -46,6 +46,53 @@
                 <TextBlock TextWrapping="Wrap" VerticalAlignment="Top"/>
             </Grid>
         </DataTemplate>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+        	<Setter Property="Background" Value="Transparent"/>
+        	<Setter Property="BorderBrush" Value="{StaticResource PhoneForegroundBrush}"/>
+        	<Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}"/>
+        	<Setter Property="BorderThickness" Value="{StaticResource PhoneBorderThickness}"/>
+        	<Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiBold}"/>
+        	<Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMedium}"/>
+        	<Setter Property="Padding" Value="10,5,10,6"/>
+        	<Setter Property="Template">
+        		<Setter.Value>
+        			<ControlTemplate TargetType="Button">
+        				<Grid Background="Transparent">
+        					<VisualStateManager.VisualStateGroups>
+        						<VisualStateGroup x:Name="CommonStates">
+        							<VisualState x:Name="Normal"/>
+        							<VisualState x:Name="MouseOver"/>
+        							<VisualState x:Name="Pressed"/>
+        							<VisualState x:Name="Disabled">
+        								<Storyboard>
+        									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentContainer">
+        										<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneDisabledBrush}"/>
+        									</ObjectAnimationUsingKeyFrames>
+        									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="ButtonBackground">
+        										<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneDisabledBrush}"/>
+        									</ObjectAnimationUsingKeyFrames>
+        									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="ButtonBackground">
+        										<DiscreteObjectKeyFrame KeyTime="0" Value="Transparent"/>
+        									</ObjectAnimationUsingKeyFrames>
+        								</Storyboard>
+        							</VisualState>
+        						</VisualStateGroup>
+        					</VisualStateManager.VisualStateGroups>
+        					<Border x:Name="ButtonBackground" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="0" Margin="4">
+        						<Border.Background>
+        							<ImageBrush ImageSource="/Assets/Images/search.png" Stretch="Fill"/>
+        						</Border.Background>
+        						<ContentControl x:Name="ContentContainer" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}">
+        							<ContentControl.Background>
+        								<ImageBrush ImageSource="/Assets/Images/search.png" Stretch="Fill"/>
+        							</ContentControl.Background>
+        						</ContentControl>
+        					</Border>
+        				</Grid>
+        			</ControlTemplate>
+        		</Setter.Value>
+        	</Setter>
+        </Style>
     </phone:PhoneApplicationPage.Resources>
 
     <phone:PhoneApplicationPage.FontFamily>
@@ -111,11 +158,7 @@
                         <Border BorderBrush="Black" BorderThickness="0" Grid.RowSpan="3" Grid.ColumnSpan="2" Background="#4CFFFFFF"/>
                         <toolkit:PhoneTextBox x:Name="ptbxStart" Margin="0,10,0,0" VerticalAlignment="Top" Hint="起点：" BorderThickness="0,0,0,2" Padding="4,0,0,0" Height="80" FontSize="32" Background="{x:Null}"/>
                         <toolkit:PhoneTextBox x:Name="ptbxEnd" Margin="0" VerticalAlignment="Top" Hint="终点：" BorderThickness="0,0,0,2" Padding="4,0,0,0" Grid.Row="1" Height="80" FontSize="32" Background="{x:Null}"/>
-                        <Button x:Name="btnSearch" HorizontalAlignment="Right" Margin="0,0,32,0" VerticalAlignment="Center" BorderThickness="0" Click="btnSearch_Click" Grid.Row="2" Grid.Column="0" Padding="0" Width="100" Height="100" Grid.RowSpan="1">
-                            <Button.Background>
-                                <ImageBrush ImageSource="Assets/Images/search.png" Stretch="UniformToFill"/>
-                            </Button.Background>
-                        </Button>
+                        <Button x:Name="btnSearch" HorizontalAlignment="Right" Margin="0,0,32,0" VerticalAlignment="Center" BorderThickness="0" Click="btnSearch_Click" Grid.Row="2" Grid.Column="0" Padding="0" Width="100" Height="100" Grid.RowSpan="1" Style="{StaticResource ButtonStyle}"/>
                     </Grid>
 
                 </phone:PivotItem>
@@ -126,11 +169,7 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <toolkit:PhoneTextBox x:Name="ptbxLineName" Margin="0" TextWrapping="Wrap" VerticalAlignment="Top" Height="80" Hint="请输入查询线路" BorderThickness="0,0,0,2" Padding="4,0,0,0" TextChanged="ptbxLineName_TextChanged" FontSize="32" Background="{x:Null}"/>
-                        <Button x:Name="btnSearchForLine" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Height="80" Width="80" Margin="344,2,0,0" BorderThickness="0" Click="btnSearchForLine_Click" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2">
-                            <Button.Background>
-                                <ImageBrush ImageSource="/Assets/Images/search.png" Stretch="UniformToFill"/>
-                            </Button.Background>
-                        </Button>
+                        <Button x:Name="btnSearchForLine" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Height="80" Width="80" Margin="344,2,0,0" BorderThickness="0" Click="btnSearchForLine_Click" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2" Style="{StaticResource ButtonStyle}"/>
                         <phone:LongListSelector x:Name="llsLines" Margin="0" Tap="llsLines_Tap" Padding="8,0,0,0" Grid.Row="1">
                             <phone:LongListSelector.Resources>
                                 <DataTemplate x:Key="DataTemplate">
@@ -154,14 +193,8 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <toolkit:PhoneTextBox x:Name="ptbxStatName" Margin="0" TextWrapping="Wrap" VerticalAlignment="Top" Height="80" Hint="请输入查询站点" BorderThickness="0,0,0,2" Padding="4,0,0,0" TextChanged="ptbxStatName_TextChanged" FontSize="32" Background="{x:Null}"/>
-                        <Button x:Name="btnSearchForStat" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Height="80" Width="80" Margin="344,2,0,0" BorderThickness="0" Click="btnSearchForStat_Click">
-                            <Button.Foreground>
-                                <ImageBrush Stretch="Fill"/>
-                            </Button.Foreground>
-                            <Button.Background>
-                                <ImageBrush ImageSource="Assets/Images/search.png" Stretch="Uniform"/>
-                            </Button.Background>
-                        </Button>
+                        <Button x:Name="btnSearchForStat" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Height="80" Width="80" Margin="344,2,0,0" BorderThickness="0" Click="btnSearchForStat_Click" Style="{StaticResource ButtonStyle}"/>
+
                         <Grid x:Name="gdSearchedStat" Grid.Row="1" Visibility="Collapsed">
                             <phone:LongListSelector x:Name="llsStats" VerticalAlignment="Top" Margin="0" Tap="llsStats_Tap" Padding="8,0,0,0">
                                 <phone:LongListSelector.Resources>
