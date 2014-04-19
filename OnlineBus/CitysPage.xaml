@@ -1,0 +1,103 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="OnlineBus.CitysPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="False" 
+    Loaded="PhoneApplicationPage_Loaded">
+
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardIn"/>
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardIn"/>
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardOut"/>
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardOut"/>
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+
+    <!--LayoutRoot 是包含所有页面内容的根网格-->
+    <Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <ImageBrush Stretch="Fill" ImageSource="Assets/Images/background.jpg"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel 包含应用程序的名称和页标题-->
+        <StackPanel Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock x:Name="tbkCity" Text="城市管理" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock Margin="9,-7,0,0" FontSize="50" Text="选择城市"/>
+        </StackPanel>
+
+        <!--ContentPanel - 在此处放置其他内容-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+        	<phone:LongListSelector x:Name="llsCitys" IsGroupingEnabled="True" Margin="12,0,0,0" Tap="llsCitys_Tap">
+        		<phone:LongListSelector.Resources>
+        			<DataTemplate x:Key="dtpItem">
+        				<Grid Margin="48,0,0,8">
+                            <TextBlock Text="{Binding CityName}" FontSize="40" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        				</Grid>
+        			</DataTemplate>
+        			<DataTemplate x:Key="dtpGroupHeader">
+        				<Grid Margin="0,0,0,8">
+        					<Grid.RowDefinitions>
+        						<RowDefinition/>
+        					</Grid.RowDefinitions>
+                            <TextBlock Text="{Binding Key}" FontSize="50" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        				</Grid>
+        			</DataTemplate>
+        			<Style x:Key="jumpListStyle" TargetType="phone:LongListSelector">
+                        <Setter Property="GridCellSize"  Value="150,80"/>
+                        <Setter Property="LayoutMode" Value="Grid" />
+                        <Setter Property="ItemTemplate">
+                            <Setter.Value>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Text="{Binding Key}" x:Name="tbkJumpListKey" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="40"/>
+                                    </Grid>     							
+        						</DataTemplate>
+        					</Setter.Value>
+        				</Setter>
+        			</Style>
+        		</phone:LongListSelector.Resources>
+        		<phone:LongListSelector.JumpListStyle>
+        			<StaticResource ResourceKey="jumpListStyle"/>
+        		</phone:LongListSelector.JumpListStyle>
+        		<phone:LongListSelector.GroupHeaderTemplate>
+        			<StaticResource ResourceKey="dtpGroupHeader"/>
+        		</phone:LongListSelector.GroupHeaderTemplate>
+        		<phone:LongListSelector.ItemTemplate>
+        			<StaticResource ResourceKey="dtpItem"/>
+        		</phone:LongListSelector.ItemTemplate>
+        	</phone:LongListSelector>
+
+        </Grid>
+    </Grid>
+
+</phone:PhoneApplicationPage>

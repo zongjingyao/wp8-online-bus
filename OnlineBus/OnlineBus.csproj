@@ -105,6 +105,9 @@
       <DependentUpon>BusRoutesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="City.cs" />
+    <Compile Include="CitysPage.xaml.cs">
+      <DependentUpon>CitysPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converter.cs" />
     <Compile Include="Line.cs" />
     <Compile Include="LocalizedStrings.cs" />
@@ -137,6 +140,10 @@
     <Page Include="BusRoutesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CitysPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>
