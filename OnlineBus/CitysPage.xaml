@@ -44,7 +44,7 @@
         </Grid.RowDefinitions>
 
         <!--TitlePanel 包含应用程序的名称和页标题-->
-        <StackPanel Grid.Row="0" Margin="12,17,0,28">
+        <StackPanel Grid.Row="0" Margin="12,17,0,16">
             <TextBlock x:Name="tbkCity" Text="城市管理" Style="{StaticResource PhoneTextNormalStyle}"/>
             <TextBlock Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Text="选择城市"/>
         </StackPanel>
@@ -72,11 +72,11 @@
                         <Setter Property="ItemTemplate">
                             <Setter.Value>
                                 <DataTemplate>
-                                    <Grid>
+                                    <Grid Background="#FF3BAFDA" Margin="0,0,8,8">
                                         <Grid.RowDefinitions>
                                             <RowDefinition/>
                                         </Grid.RowDefinitions>
-                                        <TextBlock Text="{Binding Key}" x:Name="tbkJumpListKey" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="40"/>
+                                        <TextBlock Text="{Binding Key}" x:Name="tbkJumpListKey" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="40"/>
                                     </Grid>     							
         						</DataTemplate>
         					</Setter.Value>
