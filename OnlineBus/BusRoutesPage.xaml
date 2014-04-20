@@ -44,17 +44,14 @@
         <my:ChangeBusDistanceConverter x:Key="changeBusDistanceConverter"/>
     </phone:PhoneApplicationPage.Resources>
     <!--LayoutRoot 是包含所有页面内容的根网格-->
-    <Grid x:Name="LayoutRoot">
-        <Grid.Background>
-            <ImageBrush Stretch="Fill" ImageSource="Assets/Images/background.jpg"/>
-        </Grid.Background>
+    <Grid x:Name="LayoutRoot" Background="#FF3BAFDA">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <!--TitlePanel 包含应用程序的名称和页标题-->
-        <StackPanel Grid.Row="0" Margin="12,17,0,28">
+        <StackPanel Grid.Row="0" Margin="12,17,0,16">
             <TextBlock x:Name="tbkCity" Text="城市-南京" Style="{StaticResource PhoneTextNormalStyle}"/>
             <TextBlock Text="换乘方案" Margin="9,4,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
@@ -65,7 +62,7 @@
         		<RowDefinition Height="Auto"/>
         		<RowDefinition/>
         	</Grid.RowDefinitions>
-        	<TextBlock x:Name="tbkRoute" FontSize="30" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        	<TextBlock x:Name="tbkRoute" FontSize="40" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top"/>
         	<phone:LongListSelector x:Name="llsBuses" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" Margin="0" Tap="llsBuses_Tap" Grid.Row="1" >
         		<phone:LongListSelector.ItemTemplate>
         			<DataTemplate>

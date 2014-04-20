@@ -255,10 +255,7 @@
         <StaticResource ResourceKey="PhoneForegroundBrush"/>
     </phone:PhoneApplicationPage.Foreground>
     <!--LayoutRoot 是包含所有页面内容的根网格-->
-    <Grid x:Name="LayoutRoot">
-        <Grid.Background>
-            <ImageBrush Stretch="Fill" ImageSource="Assets/Images/background.jpg"/>
-        </Grid.Background>
+    <Grid x:Name="LayoutRoot" Background="#FF3BAFDA">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -305,7 +302,7 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Border BorderBrush="Black" BorderThickness="0" Grid.RowSpan="3" Grid.ColumnSpan="2" Background="#4CFFFFFF"/>
+                        <Border BorderBrush="Black" BorderThickness="0" Grid.RowSpan="3" Grid.ColumnSpan="2" Background="#FF4FC1E9"/>
                         <toolkit:PhoneTextBox x:Name="ptbxStart" Margin="0,10,0,0" VerticalAlignment="Top" Hint="起点：" Height="80" FontSize="32" Style="{StaticResource PhoneTextBoxStyle}" Foreground="White" CaretBrush="White" />
                         <toolkit:PhoneTextBox x:Name="ptbxEnd" Margin="0" VerticalAlignment="Top" Hint="终点：" Grid.Row="1" Height="80" FontSize="32" Style="{StaticResource PhoneTextBoxStyle}" Foreground="White" CaretBrush="White" />
                         <Button x:Name="btnSearch" HorizontalAlignment="Right" Margin="0,0,32,0" VerticalAlignment="Center" BorderThickness="0" Click="btnSearch_Click" Grid.Row="2" Grid.Column="0" Padding="0" Width="100" Height="100" Grid.RowSpan="1" Style="{StaticResource ButtonStyleForSearch}"/>
@@ -318,9 +315,11 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
+                        <Border BorderBrush="Black" BorderThickness="0" Background="#FF4FC1E9" Margin="0,0,0,545" Grid.RowSpan="2"/>
+
                         <toolkit:PhoneTextBox x:Name="ptbxLineName" CaretBrush="White" TextWrapping="Wrap" VerticalAlignment="Top" Height="80" Hint="请输入查询线路" TextChanged="ptbxLineName_TextChanged" FontSize="32" Style="{StaticResource PhoneTextBoxStyle}" Foreground="White"/>
                         <Button x:Name="btnSearchForLine" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Height="80" Width="80" Margin="344,2,0,0" BorderThickness="0" Click="btnSearchForLine_Click" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2" Style="{StaticResource ButtonStyleForSearch}"/>
-                        <phone:LongListSelector x:Name="llsLines" Margin="0" Tap="llsLines_Tap" Padding="8,0,0,0" Grid.Row="1">
+                        <phone:LongListSelector x:Name="llsLines" Margin="0,16,0,0" Tap="llsLines_Tap" Padding="8,0,0,0" Grid.Row="1">
                             <phone:LongListSelector.Resources>
                                 <DataTemplate x:Key="DataTemplate">
                                     <Grid Margin="0,0,0,16">
@@ -342,11 +341,13 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
+                        <Border BorderBrush="Black" BorderThickness="0" Background="#FF4FC1E9"/>
+
                         <toolkit:PhoneTextBox x:Name="ptbxStatName" CaretBrush="White" TextWrapping="Wrap" VerticalAlignment="Top" Height="80" Hint="请输入查询站点" TextChanged="ptbxStatName_TextChanged" FontSize="32" Style="{StaticResource PhoneTextBoxStyle}" Foreground="White"/>
                         <Button x:Name="btnSearchForStat" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Height="80" Width="80" Margin="344,2,0,0" BorderThickness="0" Click="btnSearchForStat_Click" Style="{StaticResource ButtonStyleForSearch}"/>
 
-                        <Grid x:Name="gdSearchedStat" Grid.Row="1" Visibility="Collapsed">
-                            <phone:LongListSelector x:Name="llsStats" VerticalAlignment="Top" Margin="0" Tap="llsStats_Tap" Padding="8,0,0,0">
+                        <Grid x:Name="gdSearchedStat" Grid.Row="1" Visibility="Collapsed" Margin="0,16,0,0">
+                            <phone:LongListSelector x:Name="llsStats" VerticalAlignment="Top" Margin="0,16,0,0" Tap="llsStats_Tap" Padding="8,0,0,0">
                                 <phone:LongListSelector.Resources>
                                     <DataTemplate x:Key="DataTemplate">
                                         <Grid Margin="0,0,0,16">
@@ -363,7 +364,7 @@
                             </phone:LongListSelector>
                             <ProgressBar x:Name="pgbStat" HorizontalAlignment="Center" Height="20" VerticalAlignment="Center" Width="300" SmallChange="10" IsIndeterminate="True" Margin="0" Visibility="Collapsed"/>
                         </Grid>
-                        <Grid x:Name="gdNearbyStat" Grid.Row="1" Visibility="Collapsed">
+                        <Grid x:Name="gdNearbyStat" Grid.Row="1" Visibility="Collapsed" Margin="0,16,0,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
@@ -372,7 +373,7 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
-                            <phone:LongListSelector x:Name="llsNearbyStats" VerticalAlignment="Top" Margin="0,16,0,0" Tap="llsStats_Tap" Padding="8,0,0,0" Grid.Row="1" Grid.RowSpan="2">
+                            <phone:LongListSelector x:Name="llsNearbyStats" VerticalAlignment="Top" Margin="0,16,0,0" Tap="llsStats_Tap" Padding="8,0,0,0" Grid.Row="1" Grid.ColumnSpan="2">
                                 <phone:LongListSelector.Resources>
                                     <DataTemplate x:Key="DataTemplate">
                                         <Grid Margin="0,0,0,16">
@@ -388,7 +389,7 @@
                                 </phone:LongListSelector.ItemTemplate>
                             </phone:LongListSelector>
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="附近站点" VerticalAlignment="Center" FontSize="35" Margin="8,0,0,0"/>
-                            <Button x:Name="btnMap" Content="" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="1" BorderThickness="0" Padding="0" Width="70" Height="70" Click="btnMap_Click">
+                            <Button x:Name="btnMap" Content="" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="1" BorderThickness="0" Padding="0" Width="50" Height="50" Click="btnMap_Click">
                             	<Button.Resources>
                             		<Style x:Key="ButtonStyleForMap" TargetType="Button">
                             			<Setter Property="Background" Value="Transparent"/>

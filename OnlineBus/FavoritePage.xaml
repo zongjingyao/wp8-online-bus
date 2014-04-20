@@ -36,10 +36,7 @@
     </toolkit:TransitionService.NavigationOutTransition>
 
     <!--LayoutRoot 是包含所有页面内容的根网格-->
-    <Grid x:Name="LayoutRoot">
-        <Grid.Background>
-            <ImageBrush Stretch="Fill" ImageSource="Assets/Images/background.jpg"/>
-        </Grid.Background>
+    <Grid x:Name="LayoutRoot" Background="#FF3BAFDA">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>

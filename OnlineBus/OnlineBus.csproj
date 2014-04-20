@@ -217,7 +217,6 @@
     </Content>
     <Content Include="Assets\citys.xml" />
     <Content Include="Assets\Images\AZURE.png" />
-    <Content Include="Assets\Images\background.jpg" />
     <Content Include="Assets\Images\BLUE.png" />
     <Content Include="Assets\Images\bus.png" />
     <Content Include="Assets\Images\bus_end_pic.png" />

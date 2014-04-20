@@ -55,17 +55,14 @@
 		<StaticResource ResourceKey="PhoneForegroundBrush"/>
 	</phone:PhoneApplicationPage.Foreground>
 <!--LayoutRoot 是包含所有页面内容的根网格-->
-	<Grid x:Name="LayoutRoot">
-		<Grid.Background>
-			<ImageBrush Stretch="Fill" ImageSource="Assets/Images/background.jpg"/>
-		</Grid.Background>
+	<Grid x:Name="LayoutRoot" Background="#FF3BAFDA">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
 
 		<!--TitlePanel 包含应用程序的名称和页标题-->
-		<StackPanel Grid.Row="0" Margin="12,17,0,28">
+		<StackPanel Grid.Row="0" Margin="12,17,0,16">
             <TextBlock x:Name="tbkCity" Text="城市-南京" Style="{StaticResource PhoneTextNormalStyle}"/>
             <TextBlock Text="方案详细" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
 		</StackPanel>
@@ -74,26 +71,32 @@
 		<Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <TextBlock x:Name="tbkRoute" FontSize="30" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top"/>
-			<phone:LongListSelector x:Name="llsRouteDetail" Margin="0,16,0,0" Grid.Row="1">
+            <Image HorizontalAlignment="Left" VerticalAlignment="Center" Source="/Assets/Images/bus_start_pic.png" Stretch="Fill" Width="30" Height="30"/>
+			<TextBlock x:Name="tbkStart" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="35" Margin="38,0,0,0"/>
+			<phone:LongListSelector x:Name="llsRouteDetail" Margin="0,16" Grid.Row="1">
 				<phone:LongListSelector.Resources>
 					<DataTemplate x:Key="DataTemplate">
-						<Grid Margin="0,32,0,0">
+						<Grid Margin="0">
 							<Grid.RowDefinitions>
 								<RowDefinition Height="Auto"/>
 								<RowDefinition Height="Auto"/>
 							</Grid.RowDefinitions>
+							<Border BorderBrush="White" BorderThickness="0,0,0,2"/>
 							<toolkit:WrapPanel HorizontalAlignment="Left" VerticalAlignment="Top">
-								<TextBlock TextWrapping="Wrap" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding FootDistance, Converter={StaticResource routeDetailFootDistanceConverter}}"/>
-                                <Button x:Name="btnStart" BorderThickness="0" FontSize="30" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" Foreground="Lime" Content="{Binding StartStat}" Click="btnStat_Click" Style="{StaticResource ButtonStyleForCommon}"/>
+								<Image Height="30" Width="30" Source="/Assets/Images/man.png" Stretch="Fill"/>
+								<TextBlock TextWrapping="Wrap" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding FootDistance, Converter={StaticResource routeDetailFootDistanceConverter}}" Margin="8,0,0,0"/>
+								<Button x:Name="btnStart" BorderThickness="0" FontSize="30" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" Foreground="Lime" Content="{Binding StartStat}" Click="btnStat_Click" Style="{StaticResource ButtonStyleForCommon}"/>
 							</toolkit:WrapPanel>
+							<Border BorderBrush="White" BorderThickness="0,0,0,2" Margin="0" Grid.Row="1"/>
 							<toolkit:WrapPanel HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1">
-								<TextBlock TextWrapping="Wrap" Text="乘" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                <Button x:Name="btnLine" BorderThickness="0" FontSize="30" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Lime" Content="{Binding LineName}" Height="73" Click="btnLine_Click" Style="{StaticResource ButtonStyleForCommon}"/>
-								<TextBlock TextWrapping="Wrap" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,27" Text="{Binding Stats.Length, Converter={StaticResource routeDetailStatCountConverter}}"/>
-                                <Button x:Name="btnEnd" BorderThickness="0" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" Padding="0" Foreground="Lime" Content="{Binding EndStat}" Click="btnStat_Click" Style="{StaticResource ButtonStyleForCommon}"/>
+								<Image Height="30" Width="30" Source="/Assets/Images/bus.png" Stretch="Fill"/>
+								<TextBlock TextWrapping="Wrap" Text="乘" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="8,0,0,0"/>
+								<Button x:Name="btnLine" BorderThickness="0" FontSize="30" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Lime" Content="{Binding LineName}" Height="73" Click="btnLine_Click" Style="{StaticResource ButtonStyleForCommon}"/>
+								<TextBlock TextWrapping="Wrap" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" Text="{Binding Stats.Length, Converter={StaticResource routeDetailStatCountConverter}}"/>
+								<Button x:Name="btnEnd" BorderThickness="0" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" Padding="0" Foreground="Lime" Content="{Binding EndStat}" Click="btnStat_Click" Style="{StaticResource ButtonStyleForCommon}"/>
 							</toolkit:WrapPanel>
 						</Grid>
 					</DataTemplate>
@@ -102,6 +105,8 @@
 					<StaticResource ResourceKey="DataTemplate"/>
 				</phone:LongListSelector.ItemTemplate>
 			</phone:LongListSelector>
+			<Image HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="2" Source="/Assets/Images/bus_end_pic.png" Stretch="Fill" Width="30" Height="30"/>
+			<TextBlock x:Name="tbkEnd" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="2" FontSize="35" Margin="38,0,0,0"/>
 
 		</Grid>
 	</Grid>

@@ -36,8 +36,8 @@ namespace OnlineBus
 
             m_strStart = NavigationContext.QueryString["start"];
             m_strEnd = NavigationContext.QueryString["end"];
-
-            tbkRoute.Text = m_strStart + "→" + m_strEnd;
+            tbkStart.Text = m_strStart;
+            tbkEnd.Text = m_strEnd;
 
             if (m_myService.State.ContainsKey("selectedBus"))
             {
