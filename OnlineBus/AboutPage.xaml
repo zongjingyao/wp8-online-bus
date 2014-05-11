@@ -57,15 +57,17 @@
         	<Grid.RowDefinitions>
         		<RowDefinition Height="Auto"/>
         		<RowDefinition Height="Auto"/>
-        		<RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
         		<RowDefinition Height="Auto"/>
         	</Grid.RowDefinitions>
-        	<Image Grid.ColumnSpan="2" Margin="0" VerticalAlignment="Center" Source="/Assets/Tiles/IconicTileMediumLarge.png" Stretch="None" HorizontalAlignment="Center"/>
-        	<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="1.0.0" VerticalAlignment="Top" Grid.Row="1" Grid.ColumnSpan="2"/>
-        	<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="个人邮箱：" VerticalAlignment="Top" Grid.Row="2" FontSize="26.667" Margin="0,24,0,0"/>
-        	<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="zongjingyao@qq.com" VerticalAlignment="Top" Grid.Row="2" Grid.Column="1" FontSize="26.667" Margin="0,24,0,0"/>
-        	<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="新浪微博：" VerticalAlignment="Top" Grid.Row="3" FontSize="26.667" Margin="0,24,0,0"/>
-        	<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="@踪粽子" VerticalAlignment="Top" Grid.Row="3" Grid.Column="1" FontSize="26.667" Margin="0,24,0,0"/>
+        	<Image Grid.ColumnSpan="2" Margin="0" VerticalAlignment="Center" Source="/Assets/Tiles/FlipCycleTileMedium.png" Stretch="None" HorizontalAlignment="Center"/>
+            <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="在线公交" VerticalAlignment="Top" FontSize="25" Grid.Row="1" Grid.ColumnSpan="2"/>
+        	<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="1.0.0.0" VerticalAlignment="Top" Grid.Row="2" Grid.ColumnSpan="2"/>
+        	<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="个人邮箱：" VerticalAlignment="Top" Grid.Row="3" FontSize="25" Margin="0,24,0,0"/>
+        	<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="zongjingyao@qq.com" VerticalAlignment="Top" Grid.Row="3" Grid.Column="1" FontSize="25" Margin="0,24,0,0"/>
+        	<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="新浪微博：" VerticalAlignment="Top" Grid.Row="4" FontSize="25" Margin="0,24,0,0"/>
+        	<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="@踪粽子" VerticalAlignment="Top" Grid.Row="4" Grid.Column="1" FontSize="25" Margin="0,24,0,0"/>
 
         </Grid>
     </Grid>
