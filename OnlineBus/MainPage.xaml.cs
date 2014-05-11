@@ -59,19 +59,28 @@ namespace OnlineBus
 
         private void LineWebClient_Completed(object sender, OpenReadCompletedEventArgs e)
         {
-            using (StreamReader reader = new StreamReader(e.Result))
+            try
             {
-                string contents = reader.ReadToEnd();
-                ObservableCollection<Line> lines = XMLUtils.parseXMLForLine(contents);
-                if (lines.Count == 0)
+                using (StreamReader reader = new StreamReader(e.Result))
                 {
-                    MessageBox.Show("无此线路");
+                    string contents = reader.ReadToEnd();
+                    ObservableCollection<Line> lines = XMLUtils.parseXMLForLine(contents);
+                    if (lines.Count == 0)
+                    {
+                        MessageBox.Show("无此线路");
+                    }
+                    else
+                    {
+                        llsLines.ItemsSource = lines;
+                    }
                 }
-                else
-                {
-                    llsLines.ItemsSource = lines;
-                }
-
+            }
+            catch
+            {
+                MessageBox.Show("数据获取失败，请检查您的网络！", "错误", MessageBoxButton.OK);
+            }
+            finally
+            {
                 pgbLine.Visibility = Visibility.Collapsed;
                 btnSearchForLine.IsEnabled = true;
             }
@@ -144,21 +153,30 @@ namespace OnlineBus
 
         private void StatWebClient_Completed(object sender, OpenReadCompletedEventArgs e)
         {
-            using (StreamReader reader = new StreamReader(e.Result))
+            try
             {
-                string contents = reader.ReadToEnd();
-                ObservableCollection<Station> stats = XMLUtils.parseXMLForStat(contents);
-                if (stats.Count == 0)
+                using (StreamReader reader = new StreamReader(e.Result))
                 {
-                    MessageBox.Show("无此站点");
+                    string contents = reader.ReadToEnd();
+                    ObservableCollection<Station> stats = XMLUtils.parseXMLForStat(contents);
+                    if (stats.Count == 0)
+                    {
+                        MessageBox.Show("无此站点");
+                    }
+                    else
+                    {
+                        llsStats.ItemsSource = stats;
+                        gdSearchedStat.Visibility = Visibility.Visible;
+                        gdNearbyStat.Visibility = Visibility.Collapsed;
+                    }
                 }
-                else
-                {
-                    llsStats.ItemsSource = stats;
-                    gdSearchedStat.Visibility = Visibility.Visible;
-                    gdNearbyStat.Visibility = Visibility.Collapsed;
-                }
-
+            }
+            catch
+            {
+                MessageBox.Show("数据获取失败，请检查您的网络！", "错误", MessageBoxButton.OK);
+            }
+            finally
+            {
                 pgbStat.Visibility = Visibility.Collapsed;
                 btnSearchForStat.IsEnabled = true;
             }
@@ -323,21 +341,32 @@ namespace OnlineBus
 
         private void NearByStatWebClient_Completed(object sender, OpenReadCompletedEventArgs e)
         {
-            using (StreamReader reader = new StreamReader(e.Result))
+            try
             {
-                string contents = reader.ReadToEnd();
-                m_nearbyStats = XMLUtils.parseXMLForNearbyStat(contents);
-                if (m_nearbyStats.Count != 0)
+                using (StreamReader reader = new StreamReader(e.Result))
                 {
-                    this.Dispatcher.BeginInvoke(() =>
+                    string contents = reader.ReadToEnd();
+                    m_nearbyStats = XMLUtils.parseXMLForNearbyStat(contents);
+                    if (m_nearbyStats.Count != 0)
                     {
-                        llsNearbyStats.ItemsSource = m_nearbyStats;
-                        if (gdSearchedStat.Visibility != Visibility.Visible)
+                        this.Dispatcher.BeginInvoke(() =>
                         {
-                            gdNearbyStat.Visibility = Visibility.Visible;
-                        }
-                    });
+                            llsNearbyStats.ItemsSource = m_nearbyStats;
+                            if (gdSearchedStat.Visibility != Visibility.Visible)
+                            {
+                                gdNearbyStat.Visibility = Visibility.Visible;
+                            }
+                        });
+                    }
                 }
+            }
+            catch
+            {
+                //MessageBox.Show("数据获取失败，请检查您的网络！", "错误", MessageBoxButton.OK);
+            }
+            finally
+            {
+                
             }
         }
 
