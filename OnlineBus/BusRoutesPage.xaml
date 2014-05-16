@@ -75,11 +75,14 @@
         						<ColumnDefinition Width="Auto"/>
         						<ColumnDefinition Width="Auto"/>
         						<ColumnDefinition Width="Auto"/>
+        						<ColumnDefinition Width="Auto"/>
         					</Grid.ColumnDefinitions>
-        					<TextBlock x:Name="tbkChangeBusTitle" TextWrapping="Wrap" FontSize="30" Text="{Binding Segments, Converter={StaticResource changeBusTitleConverter}}" Grid.ColumnSpan="3" VerticalAlignment="Top" Width="{Binding ActualWidth, ElementName=llsBuses, Mode=OneWay}" />
-        					<TextBlock x:Name="tbkChangeBusCount" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding ChangeBusCount, Converter={StaticResource changeBusCountConverter}}" VerticalAlignment="Top" Margin="0" FontSize="20" Grid.Row="1"/>
-        					<TextBlock x:Name="tbkTime" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Time, Converter={StaticResource changeBusTimeConverter}}" VerticalAlignment="Top" FontSize="20" Margin="0" Grid.Row="1" Grid.Column="1"/>
-        					<TextBlock x:Name="tbkDistance" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Distance, Converter={StaticResource changeBusDistanceConverter}}" VerticalAlignment="Top" FontSize="20" Margin="0" Grid.Row="1" Grid.Column="2"/>
+        					<Image Source="/Assets/Images/bus.png" Stretch="Fill" Margin="0" Grid.RowSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Width="40" Height="40"/>
+                            
+        					<TextBlock x:Name="tbkChangeBusTitle" TextWrapping="Wrap" FontSize="30" Text="{Binding Segments, Converter={StaticResource changeBusTitleConverter}}" Grid.ColumnSpan="3" VerticalAlignment="Top" Width="{Binding ActualWidth, ElementName=llsBuses, Mode=OneWay}" Grid.Column="1" />
+        					<TextBlock x:Name="tbkChangeBusCount" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding ChangeBusCount, Converter={StaticResource changeBusCountConverter}}" VerticalAlignment="Top" Margin="0,0,-40,0" FontSize="20" Grid.Row="1" Grid.Column="1"/>
+        					<TextBlock x:Name="tbkTime" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Time, Converter={StaticResource changeBusTimeConverter}}" VerticalAlignment="Top" FontSize="20" Margin="0,0,-40,0" Grid.Row="1" Grid.Column="2"/>
+        					<TextBlock x:Name="tbkDistance" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Distance, Converter={StaticResource changeBusDistanceConverter}}" VerticalAlignment="Top" FontSize="20" Margin="0" Grid.Row="1" Grid.Column="3"/>
                             
         				</Grid>
         			</DataTemplate>

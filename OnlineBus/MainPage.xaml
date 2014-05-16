@@ -38,6 +38,9 @@
     </toolkit:TransitionService.NavigationOutTransition>
 
     <phone:PhoneApplicationPage.Resources>
+        <my:LineNameConverter x:Key="lineNameConverter"/>
+        <my:LineStartAndEndConverter x:Key="lineStartAndEndConverter"/>
+        <my:LineTimeConverter x:Key="lineTimeConverter"/>
         <DataTemplate x:Key="DataTemplateStats">
             <Grid>
                 <Grid.RowDefinitions>
@@ -322,9 +325,22 @@
                         <phone:LongListSelector x:Name="llsLines" Margin="0,16,0,0" Tap="llsLines_Tap" Padding="8,0,0,0" Grid.Row="1">
                             <phone:LongListSelector.Resources>
                                 <DataTemplate x:Key="DataTemplate">
-                                    <Grid Margin="0,0,0,16">
-                                        <TextBlock  Text="{Binding LineName}" FontSize="30" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top"/>
-                                    </Grid>
+                                	<Grid Margin="0,0,0,16">
+                                		<Grid.ColumnDefinitions>
+                                			<ColumnDefinition Width="Auto"/>
+                                		</Grid.ColumnDefinitions>
+                                		<Grid.RowDefinitions>
+                                			<RowDefinition Height="Auto"/>
+                                			<RowDefinition Height="Auto"/>
+                                			<RowDefinition Height="Auto"/>
+                                		</Grid.RowDefinitions>
+                                		<StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal">
+                                			<Image Source="/Assets/Images/bus.png" Stretch="Fill" Margin="0" Width="40" Height="40" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                			<TextBlock x:Name="tbkLineName" Text="{Binding LineName, Converter={StaticResource lineNameConverter}}" FontSize="33" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center"/>
+                                		</StackPanel>
+                                		<TextBlock x:Name="tbkStartAndEnd" Text="{Binding LineName, Converter={StaticResource lineStartAndEndConverter}}" FontSize="25" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="1"/>
+                                		<TextBlock x:Name="tbkTime" Text="{Binding Info, Converter={StaticResource lineTimeConverter}}" FontSize="20" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="2"/>
+                                	</Grid>
                                 </DataTemplate>
                             </phone:LongListSelector.Resources>
                             <phone:LongListSelector.ItemTemplate>

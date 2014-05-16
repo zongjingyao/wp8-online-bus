@@ -33,7 +33,7 @@ namespace OnlineBus
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return "换乘" + (int)value + "次，";
+            return "换乘" + (int)value + "次,";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -50,11 +50,11 @@ namespace OnlineBus
             int time = int.Parse((string)value);
             if(time < 60)
             {
-                return "用时约" + time + "分钟，";
+                return "用时约" + time + "分钟,";
             }
             else
             {
-                return "用时约" + time/60 + "小时" + time%60 + "分钟，";
+                return "用时约" + time/60 + "小时" + time%60 + "分钟,";
             }
         }
 
@@ -117,6 +117,59 @@ namespace OnlineBus
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return null;
+        }
+    }
+
+    public class LineNameConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            string strOrigin = (string)value;
+            string lineName = strOrigin.Substring(0, strOrigin.IndexOf('('));
+            return lineName;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            return null;
+        }
+    }
+
+    public class LineStartAndEndConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            string strOrigin = (string)value;
+            int start = strOrigin.IndexOf('(') + 1;
+            int end = strOrigin.Length - 1;
+            string strStartAndEnd = strOrigin.Substring(start, end - start);
+            return strStartAndEnd;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            return null;
+        }
+    }
+
+    public class LineTimeConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            string strOrigin = (string)value;
+            string strTime = "";
+            if(strOrigin.Length > 0)
+            {
+                string[] infos = strOrigin.Split(';');
+                if(infos.Length > 2)
+                    strTime = infos[1];
+            }
+            return strTime;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             return null;
         }
