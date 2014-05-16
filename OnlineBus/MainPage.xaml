@@ -380,7 +380,7 @@
                             </phone:LongListSelector>
                             <ProgressBar x:Name="pgbStat" HorizontalAlignment="Center" Height="20" VerticalAlignment="Center" Width="300" SmallChange="10" IsIndeterminate="True" Margin="0" Visibility="Collapsed"/>
                         </Grid>
-                        <Grid x:Name="gdNearbyStat" Grid.Row="1" Visibility="Collapsed" Margin="0,16,0,0">
+                        <Grid x:Name="gdNearbyStat" Grid.Row="1" Margin="0,16,0,0" Visibility="Collapsed">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
@@ -388,8 +388,9 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition/>
+                                <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
-                            <phone:LongListSelector x:Name="llsNearbyStats" VerticalAlignment="Top" Margin="0,16,0,0" Tap="llsStats_Tap" Padding="8,0,0,0" Grid.Row="1" Grid.ColumnSpan="2">
+                            <phone:LongListSelector x:Name="llsNearbyStats" Margin="0,16,0,0" Tap="llsStats_Tap" Padding="8,0,0,0" Grid.Row="1" Grid.ColumnSpan="2">
                                 <phone:LongListSelector.Resources>
                                     <DataTemplate x:Key="DataTemplate">
                                         <Grid Margin="0,0,0,16">
@@ -481,6 +482,7 @@
                             		<StaticResource ResourceKey="ButtonStyleForMap"/>
                             	</Button.Style>
                             </Button>
+                            <TextBlock x:Name="tbkLocation" Margin="8,16,0,0" TextWrapping="Wrap" VerticalAlignment="Bottom" Grid.Row="3" Grid.ColumnSpan="2"/>
                         </Grid>
 
                     </Grid>

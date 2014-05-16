@@ -29,7 +29,7 @@ namespace OnlineBus
         private PhoneApplicationService m_myService = PhoneApplicationService.Current;
         private LatLng m_location;
         private AMapGeolocator m_mylocation = null;
-        private string DEFAULT_DIST = "500";
+        private string DEFAULT_DIST = "1000";
         private AMapPositionChangedEventArgs m_args;
         private bool m_bIsCheckedCity = false;
 
@@ -257,7 +257,7 @@ namespace OnlineBus
             Debug.WriteLine("定位经纬度：" + args.LngLat);
             flashNearbyStat();
 
-            if (!m_bIsCheckedCity)
+            //if (!m_bIsCheckedCity)
             {
                 Debug.WriteLine("开始检查城市");
                 await CheckCity(args.LngLat.longitude, args.LngLat.latitude);
@@ -275,6 +275,15 @@ namespace OnlineBus
                     AMapReGeoCode regeocode = rcc.ReGeoCode;
                     AMapAddressComponent addressComponent = regeocode.Address_component;
                     string strCurrentCity = addressComponent.City;
+                    string strLocation = "";
+                    strLocation += addressComponent.Province + addressComponent.City + addressComponent.District
+                        + addressComponent.Township + addressComponent.Stree_number.Street;
+                    if (addressComponent.Stree_number.Number.Length > 0)
+                    {
+                        strLocation += addressComponent.Stree_number.Number + "号";
+                    }
+                    tbkLocation.Text = strLocation;
+                    Debug.WriteLine(strLocation);
                     if (strCurrentCity.Contains("市"))
                     {
                         strCurrentCity = strCurrentCity.Replace("市", "");
