@@ -53,6 +53,7 @@ namespace OnlineBus
                 MessageBox.Show("请输入站点名", "提醒", MessageBoxButton.OK);
                 return;
             }
+            SaveHistory(strStart,strEnd);
 
             NavigationService.Navigate(new Uri("/BusRoutesPage.xaml?start=" + strStart + "&end=" + strEnd, UriKind.Relative));
         }
@@ -234,6 +235,8 @@ namespace OnlineBus
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
+            BindHistoryData();
+
             m_mylocation = new AMapGeolocator();
             m_mylocation.Start();
             //触发位置改变事件
@@ -387,6 +390,97 @@ namespace OnlineBus
         private void btnFav_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             NavigationService.Navigate(new Uri("/FavoritePage.xaml", UriKind.Relative));
+        }
+
+        private void SaveHistory(string strStart,string strEnd)
+        {
+            using (IsolatedStorageFile storage = IsolatedStorageFile.GetUserStoreForApplication())
+            {
+                try
+                {
+                    IsolatedStorageFileStream location;
+                    if (!storage.FileExists("HistoryRoutes.dat"))
+                    {
+                        location = new IsolatedStorageFileStream("HistoryRoutes.dat", System.IO.FileMode.CreateNew, storage);
+                        location.Dispose();
+                    }
+
+                    location = new IsolatedStorageFileStream("HistoryRoutes.dat", System.IO.FileMode.Open, storage);
+                    string strTemp = WebService.GetCity() + "," + strStart + "," + strEnd + ";";
+                    StreamReader sr = new StreamReader(location);
+                    string content = sr.ReadToEnd();
+                    Debug.WriteLine("old:"+content);
+                    sr.Close();
+                    location.Dispose();
+                    if (content.Contains(strTemp))
+                    {
+                        content = content.Replace(strTemp, "");
+                    }
+                    content = content.Insert(0, strTemp);
+
+                    string[] units = content.Split(';');
+                    if(units.Length > 11)
+                    {
+                        content = "";
+                        for(int i = 0; i < 10; i++)
+                        {
+                            content += units[i] + ";";
+                        }
+                    }
+
+                    Debug.WriteLine("new:" + content);
+                    location = new IsolatedStorageFileStream("HistoryRoutes.dat", System.IO.FileMode.Create, storage);
+                    StreamWriter sw = new StreamWriter(location);
+                    sw.Write(content);
+                    sw.Close();
+                    location.Dispose();
+                    
+                }
+                catch (Exception e1)
+                {
+                    Debug.WriteLine(e1.Message);
+                }
+
+            }
+        }
+
+        private void BindHistoryData()
+        {
+            using (IsolatedStorageFile storage = IsolatedStorageFile.GetUserStoreForApplication())
+            {
+                try
+                {
+                    ObservableCollection<Route> routes = new ObservableCollection<Route>();
+                    IsolatedStorageFileStream location = new IsolatedStorageFileStream("HistoryRoutes.dat", System.IO.FileMode.Open, storage);
+                    StreamReader sr = new StreamReader(location);
+                    string content = sr.ReadToEnd();
+                    string[] strRoutes = content.Split(';');
+                    foreach (string strTempRoute in strRoutes)
+                    {
+                        Route route = new Route();
+                        string[] strRoute = strTempRoute.Split(',');
+                        if (strRoute[0] == WebService.GetCity())
+                        {
+                            route.StartStat = strRoute[1];
+                            route.EndStat = strRoute[2];
+                            route.Info = strRoute[1] + "-" + strRoute[2];
+                            routes.Add(route);
+                        }
+                    }
+                    llsHistory.ItemsSource = routes;
+                    location.Dispose();
+                }
+                catch (Exception e1)
+                {
+                    Debug.WriteLine(e1.Message);
+                }
+
+            }
+        }
+
+        private void llsHistory_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+
         }
     }
 }
