@@ -301,6 +301,7 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
@@ -310,7 +311,9 @@
                         <toolkit:PhoneTextBox x:Name="ptbxStart" Margin="0,10,0,0" VerticalAlignment="Top" Hint="起点：" Height="80" FontSize="32" Style="{StaticResource PhoneTextBoxStyle}" Foreground="White" CaretBrush="White" />
                         <toolkit:PhoneTextBox x:Name="ptbxEnd" Margin="0" VerticalAlignment="Top" Hint="终点：" Grid.Row="1" Height="80" FontSize="32" Style="{StaticResource PhoneTextBoxStyle}" Foreground="White" CaretBrush="White" />
                         <Button x:Name="btnSearch" HorizontalAlignment="Right" Margin="0,0,32,0" VerticalAlignment="Center" BorderThickness="0" Click="btnSearch_Click" Grid.Row="2" Grid.Column="0" Padding="0" Width="100" Height="100" Grid.RowSpan="1" Style="{StaticResource ButtonStyleForSearch}"/>
-                        <phone:LongListSelector x:Name="llsHistory" VerticalAlignment="Top" Grid.Row="3" Margin="0,16,0,0" Tap="llsHistory_Tap">
+                        <TextBlock x:Name="tbkHistory" HorizontalAlignment="Left" TextWrapping="Wrap" Text="历史查询" VerticalAlignment="Center" Grid.Row="3" FontSize="30" Visibility="Collapsed"/>
+                        <Button x:Name="btnClearHistory" Content="清除" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="3" BorderThickness="0" FontSize="30" Padding="0" Click="btnClearHistory_Click" Style="{StaticResource ButtonStyleForCommon}" Visibility="Collapsed"/>
+                        <phone:LongListSelector x:Name="llsHistory" VerticalAlignment="Top" Grid.Row="4" Margin="0" Tap="llsHistory_Tap" Visibility="Collapsed">
                         	<phone:LongListSelector.Resources>
                         		<DataTemplate x:Key="DataTemplateHistory">
                         			<Grid>

@@ -451,30 +451,44 @@ namespace OnlineBus
                 try
                 {
                     ObservableCollection<Route> routes = new ObservableCollection<Route>();
-                    IsolatedStorageFileStream location = new IsolatedStorageFileStream("HistoryRoutes.dat", System.IO.FileMode.Open, storage);
-                    StreamReader sr = new StreamReader(location);
-                    string content = sr.ReadToEnd();
-                    string[] strRoutes = content.Split(';');
-                    foreach (string strTempRoute in strRoutes)
+                    if (storage.FileExists("HistoryRoutes.dat"))
                     {
-                        Route route = new Route();
-                        string[] strRoute = strTempRoute.Split(',');
-                        if (strRoute[0] == WebService.GetCity())
+                        IsolatedStorageFileStream location = new IsolatedStorageFileStream("HistoryRoutes.dat", System.IO.FileMode.Open, storage);
+                        StreamReader sr = new StreamReader(location);
+                        string content = sr.ReadToEnd();
+                        sr.Close();
+                        string[] strRoutes = content.Split(';');
+                        foreach (string strTempRoute in strRoutes)
                         {
-                            route.StartStat = strRoute[1];
-                            route.EndStat = strRoute[2];
-                            route.Info = strRoute[1] + "-" + strRoute[2];
-                            routes.Add(route);
+                            Route route = new Route();
+                            string[] strRoute = strTempRoute.Split(',');
+                            if (strRoute[0] == WebService.GetCity())
+                            {
+                                route.StartStat = strRoute[1];
+                                route.EndStat = strRoute[2];
+                                route.Info = strRoute[1] + "-" + strRoute[2];
+                                routes.Add(route);
+                            }
                         }
+                        llsHistory.ItemsSource = routes;
+                        tbkHistory.Visibility = Visibility.Visible;
+                        btnClearHistory.Visibility = Visibility.Visible;
+                        llsHistory.Visibility = Visibility.Visible;
+
+                        location.Dispose();
                     }
-                    llsHistory.ItemsSource = routes;
-                    location.Dispose();
+                    else
+                    {
+                        tbkHistory.Visibility = Visibility.Collapsed;
+                        btnClearHistory.Visibility = Visibility.Collapsed;
+                        llsHistory.Visibility = Visibility.Collapsed;
+                    }
+                    
                 }
                 catch (Exception e1)
                 {
                     Debug.WriteLine(e1.Message);
                 }
-
             }
         }
 
@@ -486,6 +500,28 @@ namespace OnlineBus
             Route history = listSelector.SelectedItem as Route;
             SaveHistory(history.StartStat, history.EndStat);
             NavigationService.Navigate(new Uri("/BusRoutesPage.xaml?start=" + history.StartStat + "&end=" + history.EndStat, UriKind.Relative));
+        }
+
+        private void btnClearHistory_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            using (IsolatedStorageFile storage = IsolatedStorageFile.GetUserStoreForApplication())
+            {
+                try
+                {
+                    if (storage.FileExists("HistoryRoutes.dat"))
+                    {
+                        storage.DeleteFile("HistoryRoutes.dat");
+                        tbkHistory.Visibility = Visibility.Collapsed;
+                        btnClearHistory.Visibility = Visibility.Collapsed;
+                        llsHistory.Visibility = Visibility.Collapsed;
+                        llsHistory.ItemsSource = null;
+                    }
+                }
+                catch (Exception e1)
+                {
+                    Debug.WriteLine(e1.Message);
+                }
+            }
         }
     }
 }
