@@ -480,7 +480,12 @@ namespace OnlineBus
 
         private void llsHistory_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-
+            var listSelector = sender as LongListSelector;
+            if (listSelector.SelectedItem == null)
+                return;
+            Route history = listSelector.SelectedItem as Route;
+            SaveHistory(history.StartStat, history.EndStat);
+            NavigationService.Navigate(new Uri("/BusRoutesPage.xaml?start=" + history.StartStat + "&end=" + history.EndStat, UriKind.Relative));
         }
     }
 }
