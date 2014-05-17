@@ -20,12 +20,20 @@ namespace OnlineBus
         private string m_strEnd = "";       
         private PhoneApplicationService m_myService = PhoneApplicationService.Current;
         private Bus m_selectedBus;
+        private ObservableCollection<Bus>[] m_buses;
+        private int m_formerIndex = 0;
+        private Button[] m_buttons;
         
         public BusRoutesPage()
         {
             InitializeComponent();
 
             tbkCity.Text = "城市-" + WebService.GetCity();
+            m_buses = new ObservableCollection<Bus>[4]{null,null,null,null};
+            m_buttons = new Button[] { btnLessChange,btnLessWalk,btnLessTime,btnSubWayFirst };
+            m_formerIndex = 0;
+            btnLessChange.BorderThickness = new Thickness(0, 0, 0, 3);
+            btnLessChange.IsEnabled = false;
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
@@ -36,7 +44,7 @@ namespace OnlineBus
                 m_strEnd = NavigationContext.QueryString["end"];
 
                 tbkRoute.Text = m_strStart + "→" + m_strEnd;
-                WebService.GetBusRoutes(m_strStart,m_strEnd,webClient_Completed);
+                WebService.GetBusRoutes(m_strStart,m_strEnd,1,webClient_Completed);
             }
         }
 
@@ -49,6 +57,9 @@ namespace OnlineBus
                     string contents = reader.ReadToEnd();
                     ObservableCollection<Bus> buses = XMLUtils.parseXMLForBusRoutes(contents);
                     llsBuses.ItemsSource = buses;
+                    llsBuses.Visibility = Visibility.Visible;
+                    
+                    m_buses[m_formerIndex] = buses;
                 }
             }
             catch
@@ -76,6 +87,33 @@ namespace OnlineBus
         {
             m_myService.State["selectedBus"] = m_selectedBus;
             base.OnNavigatedFrom(e);
+        }
+
+        private void btnClick(object sender, System.Windows.RoutedEventArgs e)
+        {
+            Button currentBtn = (Button)sender;
+            m_buttons[m_formerIndex].IsEnabled = true;
+            currentBtn.BorderThickness = new Thickness(0, 0, 0, 3);
+            m_buttons[m_formerIndex].BorderThickness = new Thickness(0, 0, 0, 0);
+            currentBtn.IsEnabled = false;
+            m_formerIndex = int.Parse(currentBtn.Tag.ToString());
+
+            if(m_buses[m_formerIndex] != null)
+            {
+                llsBuses.ItemsSource = m_buses[m_formerIndex];
+            }
+            else
+            {
+                int rc = m_formerIndex + 1;
+                if(rc == 4)
+                {
+                    rc++;
+                }
+                llsBuses.Visibility = Visibility.Collapsed;
+                progressBar.Visibility = Visibility.Visible;
+                WebService.GetBusRoutes(m_strStart, m_strEnd, rc, webClient_Completed);
+            }
+
         }
     }
 }

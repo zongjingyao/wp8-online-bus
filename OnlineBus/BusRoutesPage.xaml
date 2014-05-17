@@ -61,6 +61,7 @@
         	<Grid.RowDefinitions>
         		<RowDefinition Height="Auto"/>
         		<RowDefinition/>
+        		<RowDefinition Height="Auto"/>
         	</Grid.RowDefinitions>
         	<TextBlock x:Name="tbkRoute" FontSize="40" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top"/>
         	<phone:LongListSelector x:Name="llsBuses" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" Margin="0" Tap="llsBuses_Tap" Grid.Row="1" >
@@ -89,6 +90,18 @@
         		</phone:LongListSelector.ItemTemplate>
         	</phone:LongListSelector>
         	<ProgressBar x:Name="progressBar" HorizontalAlignment="Center" Height="20" VerticalAlignment="Center" Width="300" Grid.Row="1" SmallChange="10" IsIndeterminate="True"/>
+        	<Grid VerticalAlignment="Top" Grid.Row="2">
+        		<Grid.ColumnDefinitions>
+        			<ColumnDefinition/>
+        			<ColumnDefinition/>
+        			<ColumnDefinition/>
+        			<ColumnDefinition/>
+        		</Grid.ColumnDefinitions>
+                <Button x:Name="btnLessChange" Content="少换乘" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0" Padding="0" Style="{StaticResource ButtonStyleForCommon}" Click="btnClick" Tag="0"/>
+                <Button x:Name="btnLessWalk" Content="少步行" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0" Padding="0" Grid.Column="1" Style="{StaticResource ButtonStyleForCommon}" Click="btnClick" Tag="1"/>
+                <Button x:Name="btnLessTime" Content="最快捷" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0" Padding="0" Grid.Column="2" Style="{StaticResource ButtonStyleForCommon}" Click="btnClick" Tag="2"/>
+                <Button x:Name="btnSubWayFirst" Content="先地铁" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0" Padding="0" Grid.Column="3" Style="{StaticResource ButtonStyleForCommon}" Click="btnClick" Tag="3"/>
+        	</Grid>
         </Grid>
     </Grid>
 

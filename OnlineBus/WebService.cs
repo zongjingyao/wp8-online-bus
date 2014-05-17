@@ -48,10 +48,10 @@ namespace OnlineBus
             return m_strCity;
         }
 
-        public static void GetBusRoutes(string strStart, string strEnd, CallBackDelegate callBack)
+        public static void GetBusRoutes(string strStart, string strEnd, int rc, CallBackDelegate callBack)
         {
             GetCity();
-            string strUri = m_strBaseUrl + TYPE_TRANSFER + "?app_key=" + m_strKey + "&city=" + m_strCity + "&start_addr=" + strStart + "&end_addr=" + strEnd;
+            string strUri = m_strBaseUrl + TYPE_TRANSFER + "?app_key=" + m_strKey + "&city=" + m_strCity + "&start_addr=" + strStart + "&end_addr=" + strEnd + "&rc=" + rc;
             DoWebClient(strUri, callBack);
         }
 
